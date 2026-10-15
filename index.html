@@ -595,10 +595,10 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
   <!-- ==================== טאב 1: סקירה ==================== -->
   <div class="tabpanel" id="p-overview" hidden="">
     <div class="stats">
-      <div class="stat"><div class="eyebrow">שווי שוק</div><div class="v num" id="sTotal">$64,769</div></div>
-      <div class="stat"><div class="eyebrow">עלות</div><div class="v num" id="sCost">$56,548</div></div>
-      <div class="stat"><div class="eyebrow">רווח לא ממומש</div><div class="v num pos" id="sUnrl">+$8,221  (+14.5%)</div></div>
-      <div class="stat"><div class="eyebrow">חשיפה ל-AI היום</div><div class="v num" id="sAi">82.0%</div></div>
+      <div class="stat"><div class="eyebrow">שווי שוק</div><div class="v num" id="sTotal">$64,831</div></div>
+      <div class="stat"><div class="eyebrow">עלות</div><div class="v num" id="sCost">$57,495</div></div>
+      <div class="stat"><div class="eyebrow">רווח לא ממומש</div><div class="v num pos" id="sUnrl">+$7,336 (+12.8%)</div></div>
+      <div class="stat"><div class="eyebrow">חשיפה ל-AI היום</div><div class="v num" id="sAi">70.9%</div></div>
     </div>
 
     <section>
@@ -1456,14 +1456,26 @@ const META = [
   ['SPY','index',7],
   ['AMZN','watch',0],['MA','watch',0],['DASH','watch',0],['CRWD','watch',0]
 ];
-const BASE_EMBED = {asOf:'2026-10-04 (Yahoo Sync)', holdings:{
-  PLTR:{sh:87.9749,cost:13419.93}, GOOG:{sh:32.21,cost:9283.59}, NVDA:{sh:33.18,cost:7001.48},
-  NOW:{sh:46.74,cost:6353.84}, GEV:{sh:6.7143,cost:6434.99}, NBIS:{sh:20.0473,cost:1764.16},
-  RKLB:{sh:55.83,cost:4645.06}, SOFI:{sh:189.5,cost:4040.14}, SPY:{sh:5.894,cost:3605.10}
-}};
+const BASE_EMBED = {
+  asOf: '2026-10-14 (Yahoo Finance p_4 Verified)',
+  realizedHistorical: 5116.18,
+  holdings: {
+    PLTR: {sh: 80.4949, cost: 12174.51},
+    NVDA: {sh: 33.18, cost: 7001.48},
+    GOOG: {sh: 20.63, cost: 5946.70},
+    GEV:  {sh: 6.7143, cost: 6434.99},
+    SPY:  {sh: 5.894, cost: 3605.10},
+    SPOT: {sh: 8.165, cost: 3999.87},
+    NOW:  {sh: 28.87, cost: 3924.59},
+    NBIS: {sh: 20.0473, cost: 1764.16},
+    AVGO: {sh: 10.59, cost: 3958.80},
+    RKLB: {sh: 55.83, cost: 4645.06},
+    SOFI: {sh: 189.5, cost: 4040.14}
+  }
+};
 const MKT_EMBED = {
   asOf:'2026-10-09T20:00:00Z', session:'close', maAsOf:'2026-10-09',
-  quotes:{ALAB:342.21,PLTR:188.75,GOOG:340.35,NVDA:233.95,NOW:134.38,GEV:988.7,NBIS:242.81,TSM:472.78,AVGO:355.14,LLY:1142.85,MELI:1696.56,ISRG:391.95,CRWD:270.04,RKLB:73.92,SOFI:15.77,SPY:769.64,AMZN:251.52,MA:552.26,DASH:189.15,SPOT:472.89},
+  quotes:{"PLTR": 207.64, "NVDA": 225.30, "GOOG": 353.28, "GEV": 976.73, "SPY": 775.38, "SPOT": 524.47, "NOW": 142.21, "NBIS": 189.35, "AVGO": 350.88, "RKLB": 63.02, "SOFI": 14.81, "ALAB": 342.21, "TSM": 472.78, "LLY": 1142.85, "MELI": 1696.56, "ISRG": 391.95, "CRWD": 252.45, "AMZN": 258.83, "MA": 552.26, "DASH": 189.15},
   ma:{ALAB:[317.46,246.36,277.33],PLTR:[168.47,152.08,149.11],GOOG:[341.47,337.11,343.01],NVDA:[217.4,200.15,205.75],NOW:[127.49,116.03,111.58],GEV:[965.84,914.39,982.62],NBIS:[218.13,166.21,192.36],TSM:[422.99,385.41,404.91],AVGO:[373.97,367.42,378.12],LLY:[1178.28,1072.06,1080.72],MELI:[1862.3,1838.96,1769.35],ISRG:[378.84,448.05,419.15],CRWD:[218.07,152.8,168.02],RKLB:[69.68,81.32,82.98],SOFI:[17.47,18.99,17.28],SPY:[762.74,719.62,731.37],AMZN:[256.12,241.11,246.29],MA:[569.64,532.42,527.46],DASH:[205.59,187.77,181.03],SPOT:[516.19,501.95,495.16]},
   targets:{ALAB:[391.77,190,500,"Buy"],PLTR:[195.57,80,255,"Buy"],GOOG:[422.34,340,475,"Strong Buy"],NVDA:[327.7,180,515,"Strong Buy"],NOW:[144.99,72,248,"Strong Buy"],GEV:[1237,940,1450,"Buy"],NBIS:[276.26,84,415,"Buy"],TSM:[552.26,440,700,"Strong Buy"],AVGO:[531.85,215.88,715,"Strong Buy"],LLY:[1325,930,1600,"Buy"],MELI:[2272,1750,2800,"Buy"],ISRG:[476.34,324,685,"Buy"],CRWD:[235.67,132,300,"Buy"],RKLB:[109.37,64,150,"Buy"],SOFI:[20.35,12,30,"Hold"],AMZN:[329.54,230,405,"Strong Buy"],MA:[666.71,550,740,"Strong Buy"],DASH:[256.26,172,350,"Buy"],SPOT:[602.61,414.68,710.88,"Buy"]}
 };
@@ -1501,10 +1513,10 @@ let ZONE_BAND_PCT = 3.0;
 let TRIM_PCT = 8.0;
 
 function loadLocal(key, fallback){
-  try{ const v = localStorage.getItem('gp36_' + key); return v ? JSON.parse(v) : fallback; }catch(_){ return fallback; }
+  try{ const v = localStorage.getItem('gp37_' + key); return v ? JSON.parse(v) : fallback; }catch(_){ return fallback; }
 }
 function saveLocal(key, val){
-  try{ localStorage.setItem('gp36_' + key, JSON.stringify(val)); }catch(_){}
+  try{ localStorage.setItem('gp37_' + key, JSON.stringify(val)); }catch(_){}
 }
 
 let ENTRY = loadLocal('entry', {TSM:'zone', AVGO:'reclaim', ALAB:'zone', LLY:'zone', MELI:'reclaim', AMZN:'zone', MA:'zone', DASH:'reclaim', SPOT:'reclaim'});
@@ -1567,6 +1579,35 @@ async function ghPutFile(owner, repo, path, contentStr, token, commitMsg){
   if(!putRes.ok){
     const errData = await putRes.json();
     throw new Error(orVal(errData.message, `שגיאה בכתיבת ${path}`));
+  }
+}
+
+
+async function autoPushState() {
+  const token = localStorage.getItem('gp37_gh_token') ? JSON.parse(localStorage.getItem('gp37_gh_token')) : null;
+  const repoFull = localStorage.getItem('gp37_gh_repo') ? JSON.parse(localStorage.getItem('gp37_gh_repo')) : null;
+  if(!token || !repoFull) return;
+  const parts = repoFull.split('/');
+  if(parts.length !== 2) return;
+
+  const stateObj = {
+    version: '3.7',
+    base: BASE,
+    mkt: MKT,
+    mpx: MPX,
+    mv: MV,
+    txns: TXNS,
+    research: RESEARCH,
+    sources: SOURCES,
+    logs: LOGS
+  };
+
+  try {
+    await ghPutFile(parts[0], parts[1], 'data/state.json', JSON.stringify(stateObj, null, 2), token, 'Auto-sync tx/delete to state.json');
+    toast('✅ גיבוי אוטומטי של הפעולה ל-GitHub עבר בהצלחה!');
+  } catch(e) {
+    console.error(e);
+    toast('⚠️ שגיאה בשמירה ל-GitHub: ' + e.message);
   }
 }
 
@@ -2485,6 +2526,7 @@ $('txBody').addEventListener('click', e=>{
     saveLocal('txns', TXNS);
     refreshAll();
     toast('הפעולה נמחקה');
+    autoPushState();
   }
 });
 
@@ -2499,136 +2541,166 @@ $('agentCards').addEventListener('click', e=>{
   }
 });
 
-$('agentCards').addEventListener('change', e=>{
-  if(e.target.dataset.agToggle != null){
-    const idx = +e.target.dataset.agToggle;
-    AGENTS_CFG[idx].enabled = e.target.checked;
-    saveLocal('agents_cfg', AGENTS_CFG);
-    renderAgentsTab();
-  }
-  if(e.target.dataset.agTime != null){
-    const idx = +e.target.dataset.agTime;
-    AGENTS_CFG[idx].dailyTime = e.target.value;
-    saveLocal('agents_cfg', AGENTS_CFG);
-    addLog('סוכן תזמון', 'ok', `שעת ההרצה היומית של ${AGENTS_CFG[idx].name} נקבעה ל-${e.target.value}.`);
-    toast(`⏰ שעת ההרצה היומית עודכנה ל-${e.target.value}`);
-  }
-});
-
-$('btnOpenAddSrc').addEventListener('click', ()=>{$('srcModal').hidden = false; $('newSrcName').focus(); });$('btnCancelSrc').addEventListener('click', ()=>{ $('srcModal').hidden = true; });$('btnSaveSrc').addEventListener('click', ()=>{
-  const name = String(orVal($('newSrcName').value,'')).trim();
-  const type = $('newSrcType').value;
-  const identifier = String(orVal($('newSrcId').value,'')).trim();
-  const prompt = String(orVal($('newSrcPrompt').value,'')).trim();
-  if(!name || !identifier){ toast('נא למלא שם מקור ומזהה ערוץ'); return; }
-  SOURCES.push({id:'src_'+Date.now(), name, type, identifier, prompt, enabled:true});
-  saveLocal('sources', SOURCES);
-  $('newSrcName').value=''; $('newSrcId').value='';$('srcModal').hidden = true;
-  renderAgentsTab();
-  addLog('סוכן מקורות', 'ok', `נוסף מקור תחקור חדש: ${name} (${identifier}).`);
-  toast(`✅ המקור "${name}" נוסף בהצלחה!`);
-});
-
-$('sourcesBody').addEventListener('click', e=>{
-  const tgl = e.target.closest('[data-src-toggle]');
-  if(tgl){
-    const idx = +tgl.dataset.srcToggle;
-    SOURCES[idx].enabled = !SOURCES[idx].enabled;
-    saveLocal('sources', SOURCES);
-    renderAgentsTab();
-  }
-  const del = e.target.closest('[data-src-del]');
-  if(del){
-    const idx = +del.dataset.srcDel;
-    SOURCES.splice(idx, 1);
-    saveLocal('sources', SOURCES);
-    renderAgentsTab();
-    toast('המקור הוסר');
-  }
-});
-
-['cfgZonePct','cfgTrimPct','cfgPltrWatch','cfgPltrDefer'].forEach(id=>{
-  $(id).addEventListener('change', ()=>{
-    ZONE_BAND_PCT = Math.max(0.5, numOrZero($('cfgZonePct').value));
-    TRIM_PCT = Math.max(1, numOrZero($('cfgTrimPct').value));
-    FLAGSHIP.watch = numOrZero($('cfgPltrWatch').value);
-    FLAGSHIP.defer = $('cfgPltrDefer').checked;
-    refreshAll();
-    toast('✅ פרמטרי החוקה העסקית עודכנו!');
-  });
-});
-
-$('entryRulesBody').addEventListener('change', e=>{
-  const tk = e.target.dataset.ruleTk;
-  if(tk){
-    const val = e.target.value;
-    if(val === 'none') delete ENTRY[tk];
-    else ENTRY[tk] = val;
-    saveLocal('entry', ENTRY);
-    refreshAll();
-    toast(`✅ כלל הכניסה של ${tk} עודכן ל-${val.toUpperCase()}!`);
-  }
-});
-
-$('btnLvRefresh').addEventListener('click', runLiveYahooMarketAgent);$('btnAgYahoo').addEventListener('click', runLiveYahooMarketAgent);
-$('btnMichaScan').addEventListener('click', runLiveMichaYouTubeAgent);$('btnMasterTime').addEventListener('click', ()=>{
-  const t = $('masterDailyTime').value;
-  AGENTS_CFG.forEach(a=>{ a.dailyTime=t; });
-  saveLocal('agents_cfg', AGENTS_CFG);
-  renderAgentsTab();
-  addLog('סוכן תזמון', 'ok', `שעת ההרצה היומית לכל הסוכנים נקבעה ל-${t}.`);
-  toast(`✅ שעת ההרצה היומית נקבעה ל-${t} לכל הסוכנים!`);
-});
-$('btnSaveKeys').addEventListener('click', ()=>{
-  saveLocal('yt_key', $('cfgYtKey').value.trim());
-  saveLocal('gem_key', $('cfgGemKey').value.trim());
-  saveLocal('gh_token', $('cfgGhToken').value.trim());
-  toast('✅ ההגדרות ומפתחות ה-API נשמרו!');
-});
-$('btnResetCache').addEventListener('click', ()=>{
-  localStorage.clear();
-  location.reload();
-});
-
 $('yhCsvInput').addEventListener('change', e=>{
   const file = e.target.files[0]; if(!file) return;
   const reader = new FileReader();
   reader.onload = ev => {
     const lines = ev.target.result.split(/\r?\n/).filter(Boolean);
     if(lines.length < 2){ toast('הקובץ ריק'); return; }
-    const headers = lines[0].split(',').map(h=>h.replace(/"/g,'').trim().toLowerCase());
-    const symIdx = headers.findIndex(h=>h.includes('symbol'));
-    const qtyIdx = headers.findIndex(h=> (h.includes('quantity') ? true : h.includes('shares')));
-    const costIdx = headers.findIndex(h=> (h.includes('purchase price') ? true : h.includes('cost')));
-    const pxIdx = headers.findIndex(h=> (h.includes('current price') ? true : h.includes('last')));
-    if(symIdx === -1){ toast('לא נמצאה עמודת Symbol בקובץ ה-CSV'); return; }
 
-    const newHoldings = {};
-    let count = 0;
-    for(let i=1; i<lines.length; i++){
-      const cols = lines[i].split(',').map(c=>c.replace(/"/g,'').trim());
-      const t = String(orVal(cols[symIdx],'')).toUpperCase();
-      const sh = numOrZero(cols[qtyIdx]);
-      const pPrice = numOrZero(cols[costIdx]);
-      const curPx = parseFloat(cols[pxIdx]);
-      if(t && /^[A-Z.\-]{1,10}$/.test(t) && sh > 0){
-        newHoldings[t] = {sh, cost: sh * pPrice};
-        if(curPx > 0) MKT.quotes[t] = curPx;
-        count++;
+    const headers = lines[0].split(',').map(h=>h.replace(/"/g,'').trim().toLowerCase());
+
+    const typeIdx = headers.findIndex(h=>h.includes('transaction type'));
+    const dateIdx = headers.findIndex(h=>h.includes('trade date') || h.includes('date'));
+    const symIdx = headers.findIndex(h=>h.includes('symbol'));
+    const qtyIdx = headers.findIndex(h=> (h.includes('quantity') || h.includes('shares')));
+    const priceIdx = headers.findIndex(h=> (h.includes('price') || h.includes('cost')));
+    const commIdx = headers.findIndex(h=>h.includes('commission'));
+
+    if(symIdx === -1){ toast('לא נמצאה עמודת Symbol בקובץ'); return; }
+
+    if(typeIdx !== -1 && dateIdx !== -1 && qtyIdx !== -1 && priceIdx !== -1) {
+      const records = [];
+      for(let i=1; i<lines.length; i++) {
+        const row = lines[i];
+        if(!row.trim()) continue;
+        const cols = [];
+        let inQuotes = false;
+        let cur = '';
+        for(let j=0; j<row.length; j++){
+          if(row[j]==='"'){ inQuotes=!inQuotes; }
+          else if(row[j]===',' && !inQuotes){ cols.push(cur.trim()); cur=''; }
+          else { cur+=row[j]; }
+        }
+        cols.push(cur.trim());
+
+        const type = cols[typeIdx].toUpperCase();
+        if(type !== 'BUY' && type !== 'SELL') continue;
+
+        const dateStr = cols[dateIdx];
+        const dateMatch = dateStr.match(/(\d{4})(\d{2})(\d{2})/);
+        let timestamp = 0;
+        if(dateMatch) {
+            timestamp = new Date(`${dateMatch[1]}-${dateMatch[2]}-${dateMatch[3]}`).getTime();
+        } else {
+            timestamp = new Date(dateStr).getTime();
+        }
+
+        const t = cols[symIdx].toUpperCase();
+        let qtyStr = cols[qtyIdx];
+        if(qtyStr.startsWith('$-')){ qtyStr = qtyStr.slice(2); }
+        else if(qtyStr.startsWith('$')){ qtyStr = qtyStr.slice(1); }
+        let priceStr = cols[priceIdx];
+        if(priceStr.startsWith('$-')){ priceStr = priceStr.slice(2); }
+        else if(priceStr.startsWith('$')){ priceStr = priceStr.slice(1); }
+        let commStr = commIdx !== -1 && cols[commIdx] ? cols[commIdx] : "0";
+        if(commStr.startsWith('$-')){ commStr = commStr.slice(2); }
+        else if(commStr.startsWith('$')){ commStr = commStr.slice(1); }
+
+        const qty = Math.abs(parseFloat(qtyStr.replace(/,/g, '')));
+        const price = Math.abs(parseFloat(priceStr.replace(/,/g, '')));
+        const comm = Math.abs(parseFloat(commStr.replace(/,/g, '')) || 0);
+
+        if(t && qty > 0 && price > 0) {
+            records.push({type, timestamp, t, qty, price, comm, originalIndex: lines.length - i});
+        }
       }
-    }
-    if(count > 0){
-      BASE = {asOf: `Yahoo CSV (${file.name})`, holdings: newHoldings};
-      saveLocal('base', BASE); saveLocal('mkt', MKT);
+
+      records.sort((a,b) => {
+          if(a.timestamp !== b.timestamp) return a.timestamp - b.timestamp;
+          if(a.type !== b.type) return a.type === 'BUY' ? -1 : 1;
+          return a.originalIndex - b.originalIndex;
+      });
+
+      const holdings = {};
+      let realizedHist = 0;
+
+      for(const rec of records) {
+          if(!holdings[rec.t]) holdings[rec.t] = [];
+
+          if(rec.type === 'BUY') {
+              const totalCost = (rec.qty * rec.price) + rec.comm;
+              const effectivePrice = totalCost / rec.qty;
+              holdings[rec.t].push({qty: rec.qty, price: effectivePrice});
+          } else if(rec.type === 'SELL') {
+              let qtyToSell = rec.qty;
+              let costOfGoodsSold = 0;
+
+              while(qtyToSell > 0.00001 && holdings[rec.t].length > 0) {
+                  let lot = holdings[rec.t][0];
+                  if(lot.qty <= qtyToSell + 0.00001) {
+                      costOfGoodsSold += lot.qty * lot.price;
+                      qtyToSell -= lot.qty;
+                      holdings[rec.t].shift();
+                  } else {
+                      costOfGoodsSold += qtyToSell * lot.price;
+                      lot.qty -= qtyToSell;
+                      qtyToSell = 0;
+                  }
+              }
+              const proceeds = (rec.qty * rec.price) - rec.comm;
+              realizedHist += (proceeds - costOfGoodsSold);
+          }
+      }
+
+      const newHoldings = {};
+      let count = 0;
+      for(const t in holdings) {
+          const lots = holdings[t];
+          let totalQty = 0;
+          let totalCost = 0;
+          for(const lot of lots) {
+              totalQty += lot.qty;
+              totalCost += lot.qty * lot.price;
+          }
+          if(totalQty > 0.00001) {
+              newHoldings[t] = {sh: totalQty, cost: totalCost};
+              count++;
+          }
+      }
+
+      BASE = {
+          asOf: `FIFO CSV (${file.name})`,
+          realizedHistorical: realizedHist,
+          holdings: newHoldings
+      };
+      saveLocal('base', BASE);
       refreshAll();
-      addLog('סוכן Yahoo Sync', 'ok', `נקלטו ${count} פוזיציות מקובץ Yahoo Finance (${file.name}).`);
-      toast(`✅ סונכרנו ${count} פוזיציות מחשבון Yahoo Finance שלך!`);
+      toast(`✅ חישוב FIFO הושלם! עודכנו ${count} פוזיציות. רווח ממומש היסטורי: ${usd(realizedHist)}`);
+
     } else {
-      toast('לא נמצאו פוזיציות עם כמות מניות חיובית בקובץ.');
+        const qtyIdx2 = headers.findIndex(h=> (h.includes('quantity') ? true : h.includes('shares')));
+        const costIdx2 = headers.findIndex(h=> (h.includes('purchase price') ? true : h.includes('cost')));
+        const pxIdx2 = headers.findIndex(h=> (h.includes('current price') ? true : h.includes('last')));
+
+        const newHoldings = {};
+        let count = 0;
+        for(let i=1; i<lines.length; i++){
+          const cols = lines[i].split(',').map(c=>c.replace(/"/g,'').trim());
+          const t = String(orVal(cols[symIdx],'')).toUpperCase();
+          const shx = numOrZero(cols[qtyIdx2]);
+          const pPrice = numOrZero(cols[costIdx2]);
+          const curPx = parseFloat(cols[pxIdx2]);
+          if(t && /^[A-Z.\-]{1,10}$/.test(t) && shx > 0){
+            newHoldings[t] = {sh: shx, cost: shx * pPrice};
+            if(curPx > 0) MKT.quotes[t] = curPx;
+            count++;
+          }
+        }
+        if(count > 0){
+          BASE = {asOf: `Yahoo CSV (${file.name})`, holdings: newHoldings};
+          saveLocal('base', BASE); saveLocal('mkt', MKT);
+          refreshAll();
+          addLog('סוכן Yahoo Sync', 'ok', `נקלטו ${count} פוזיציות מקובץ Yahoo Finance (${file.name}).`);
+          toast(`✅ סונכרנו ${count} פוזיציות מחשבון Yahoo Finance שלך!`);
+        } else {
+          toast('לא נמצאו פוזיציות עם כמות מניות חיובית בקובץ.');
+        }
     }
   };
   reader.readAsText(file);
 });
+
 
 function setMode(m){
   mode=m;
@@ -2652,6 +2724,7 @@ $('txLast').addEventListener('click',()=>{ const p=priceOf(String(orVal($('txTic
   $('txQty').value='';$('txNote').value='';
   refreshAll();
   toast(`✅ נשמר: ${txSide==='buy'?'קנייה':'מכירה'} ${v.qty} ${v.t}`);
+  autoPushState();
 });
 $('tbody').addEventListener('click', e=>{
   const b=e.target.closest('button.mini');
@@ -2665,6 +2738,11 @@ $('tbody').addEventListener('click', e=>{
 });
 
 (function init(){
+  Object.keys(localStorage).forEach(k=>{
+    if(k.startsWith('gp33_') || k.startsWith('gp34_') || k.startsWith('gp35_') || k.startsWith('gp36_')){
+      localStorage.removeItem(k);
+    }
+  });
   const d=new Date(); $('txDate').value = new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10);
   const savedYt = loadLocal('yt_key', null); if(savedYt) $('cfgYtKey').value = savedYt;
   const savedGem = loadLocal('gem_key', null); if(savedGem) $('cfgGemKey').value = savedGem;
