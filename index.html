@@ -2,7 +2,7 @@
 <html lang="he" dir="rtl"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>תיק יעד צמיחה · v3.6 Auto-Deploy &amp; Jules Ready</title>
+<title>גרסה 3.7 Argon Verified · מסונכרן 100% עם Yahoo Finance (p_4 - 11 פוזיציות)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700&amp;family=Assistant:wght@400;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
@@ -187,7 +187,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
 <div class="wrap">
   <header>
     <div class="topbar">
-      <span class="ver">גרסה 3.6 Auto-Deploy + Jules · הקמה אוטומטית מלאה ב-GitHub</span>
+      <span class="ver">גרסה 3.7 Argon Verified · מסונכרן 100% עם Yahoo Finance (p_4 - 11 פוזיציות)</span>
       <div class="eyebrow">תיק השקעות · אופק שנתיים+ · יעד: לנצח את S&amp;P 500</div>
     </div>
     <h1>תיק יעד צמיחה ומרכז בקרת סוכנים</h1>
@@ -595,10 +595,10 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
   <!-- ==================== טאב 1: סקירה ==================== -->
   <div class="tabpanel" id="p-overview" hidden="">
     <div class="stats">
-      <div class="stat"><div class="eyebrow">שווי שוק</div><div class="v num" id="sTotal">$64,769</div></div>
-      <div class="stat"><div class="eyebrow">עלות</div><div class="v num" id="sCost">$56,548</div></div>
-      <div class="stat"><div class="eyebrow">רווח לא ממומש</div><div class="v num pos" id="sUnrl">+$8,221  (+14.5%)</div></div>
-      <div class="stat"><div class="eyebrow">חשיפה ל-AI היום</div><div class="v num" id="sAi">82.0%</div></div>
+      <div class="stat"><div class="eyebrow">שווי שוק</div><div class="v num" id="sTotal">$64,831</div></div>
+      <div class="stat"><div class="eyebrow">עלות</div><div class="v num" id="sCost">$57,495</div></div>
+      <div class="stat"><div class="eyebrow">רווח לא ממומש</div><div class="v num pos" id="sUnrl">+$7,336 (+12.8%)</div></div>
+      <div class="stat"><div class="eyebrow">חשיפה ל-AI היום</div><div class="v num" id="sAi">70.9%</div></div>
     </div>
 
     <section>
@@ -1456,14 +1456,21 @@ const META = [
   ['SPY','index',7],
   ['AMZN','watch',0],['MA','watch',0],['DASH','watch',0],['CRWD','watch',0]
 ];
-const BASE_EMBED = {asOf:'2026-10-04 (Yahoo Sync)', holdings:{
-  PLTR:{sh:87.9749,cost:13419.93}, GOOG:{sh:32.21,cost:9283.59}, NVDA:{sh:33.18,cost:7001.48},
-  NOW:{sh:46.74,cost:6353.84}, GEV:{sh:6.7143,cost:6434.99}, NBIS:{sh:20.0473,cost:1764.16},
-  RKLB:{sh:55.83,cost:4645.06}, SOFI:{sh:189.5,cost:4040.14}, SPY:{sh:5.894,cost:3605.10}
-}};
+const BASE_EMBED = {
+  asOf: '2026-10-14 (Yahoo Finance p_4 Verified)',
+  realizedHistorical: 5116.18,
+  holdings: {
+    PLTR: {sh: 80.4949, cost: 12174.51}, NVDA: {sh: 33.18, cost: 7001.48},
+    GOOG: {sh: 20.63, cost: 5946.70}, GEV:  {sh: 6.7143, cost: 6434.99},
+    SPY:  {sh: 5.894, cost: 3605.10}, SPOT: {sh: 8.165, cost: 3999.87},
+    NOW:  {sh: 28.87, cost: 3924.59}, NBIS: {sh: 20.0473, cost: 1764.16},
+    AVGO: {sh: 10.59, cost: 3958.80}, RKLB: {sh: 55.83, cost: 4645.06},
+    SOFI: {sh: 189.5, cost: 4040.14}
+  }
+};
 const MKT_EMBED = {
   asOf:'2026-10-09T20:00:00Z', session:'close', maAsOf:'2026-10-09',
-  quotes:{ALAB:342.21,PLTR:188.75,GOOG:340.35,NVDA:233.95,NOW:134.38,GEV:988.7,NBIS:242.81,TSM:472.78,AVGO:355.14,LLY:1142.85,MELI:1696.56,ISRG:391.95,CRWD:270.04,RKLB:73.92,SOFI:15.77,SPY:769.64,AMZN:251.52,MA:552.26,DASH:189.15,SPOT:472.89},
+  quotes:{"PLTR": 207.64, "NVDA": 225.30, "GOOG": 353.28, "GEV": 976.73, "SPY": 775.38, "SPOT": 524.47, "NOW": 142.21, "NBIS": 189.35, "AVGO": 350.88, "RKLB": 63.02, "SOFI": 14.81, "ALAB": 342.21, "TSM": 472.78, "LLY": 1142.85, "MELI": 1696.56, "ISRG": 391.95, "CRWD": 252.45, "AMZN": 258.83, "MA": 552.26, "DASH": 189.15},
   ma:{ALAB:[317.46,246.36,277.33],PLTR:[168.47,152.08,149.11],GOOG:[341.47,337.11,343.01],NVDA:[217.4,200.15,205.75],NOW:[127.49,116.03,111.58],GEV:[965.84,914.39,982.62],NBIS:[218.13,166.21,192.36],TSM:[422.99,385.41,404.91],AVGO:[373.97,367.42,378.12],LLY:[1178.28,1072.06,1080.72],MELI:[1862.3,1838.96,1769.35],ISRG:[378.84,448.05,419.15],CRWD:[218.07,152.8,168.02],RKLB:[69.68,81.32,82.98],SOFI:[17.47,18.99,17.28],SPY:[762.74,719.62,731.37],AMZN:[256.12,241.11,246.29],MA:[569.64,532.42,527.46],DASH:[205.59,187.77,181.03],SPOT:[516.19,501.95,495.16]},
   targets:{ALAB:[391.77,190,500,"Buy"],PLTR:[195.57,80,255,"Buy"],GOOG:[422.34,340,475,"Strong Buy"],NVDA:[327.7,180,515,"Strong Buy"],NOW:[144.99,72,248,"Strong Buy"],GEV:[1237,940,1450,"Buy"],NBIS:[276.26,84,415,"Buy"],TSM:[552.26,440,700,"Strong Buy"],AVGO:[531.85,215.88,715,"Strong Buy"],LLY:[1325,930,1600,"Buy"],MELI:[2272,1750,2800,"Buy"],ISRG:[476.34,324,685,"Buy"],CRWD:[235.67,132,300,"Buy"],RKLB:[109.37,64,150,"Buy"],SOFI:[20.35,12,30,"Hold"],AMZN:[329.54,230,405,"Strong Buy"],MA:[666.71,550,740,"Strong Buy"],DASH:[256.26,172,350,"Buy"],SPOT:[602.61,414.68,710.88,"Buy"]}
 };
@@ -1501,10 +1508,10 @@ let ZONE_BAND_PCT = 3.0;
 let TRIM_PCT = 8.0;
 
 function loadLocal(key, fallback){
-  try{ const v = localStorage.getItem('gp36_' + key); return v ? JSON.parse(v) : fallback; }catch(_){ return fallback; }
+  try{ const v = localStorage.getItem('gp37_' + key); return v ? JSON.parse(v) : fallback; }catch(_){ return fallback; }
 }
 function saveLocal(key, val){
-  try{ localStorage.setItem('gp36_' + key, JSON.stringify(val)); }catch(_){}
+  try{ localStorage.setItem('gp37_' + key, JSON.stringify(val)); }catch(_){}
 }
 
 let ENTRY = loadLocal('entry', {TSM:'zone', AVGO:'reclaim', ALAB:'zone', LLY:'zone', MELI:'reclaim', AMZN:'zone', MA:'zone', DASH:'reclaim', SPOT:'reclaim'});
@@ -2478,13 +2485,58 @@ $('p-micha').addEventListener('click', e=>{
   if(deepBtn) runLiveDeepResearch(deepBtn.dataset.deep);
 });
 
-$('txBody').addEventListener('click', e=>{
+async function pullStateFromCloud(silent=false){
+  const token = loadLocal('gh_token', '');
+  const repo = loadLocal('gh_repo', '');
+  if(!token || !repo) return;
+  try {
+    const owner = repo.split('/')[0];
+    const repoName = repo.split('/')[1];
+    const url = `https://api.github.com/repos/${owner}/${repoName}/contents/data/state.json`;
+    const getRes = await fetch(url, {headers:{'Authorization':`Bearer ${token}`, 'Accept':'application/vnd.github.v3.raw'}});
+    if(getRes.ok){
+      const rawText = await getRes.text();
+      const st = JSON.parse(rawText);
+      if(st.base) BASE = st.base;
+      if(st.mkt) MKT = st.mkt;
+      if(st.txns) TXNS = st.txns;
+      if(st.mpx) MPX = st.mpx;
+      if(st.mv) MV = st.mv;
+      if(st.research) RESEARCH = st.research;
+      if(st.sources) SOURCES = st.sources;
+      if(st.logs) LOGS = st.logs;
+      saveLocal('base', BASE); saveLocal('mkt', MKT); saveLocal('txns', TXNS);
+      refreshAll();
+      if(!silent) toast('✅ סונכרן מצב אחרון מהענן!');
+    }
+  } catch(err) {
+    if(!silent) toast(`⚠️ שגיאה במשיכת נתונים: ${err.message}`);
+  }
+}
+
+async function pushStateToGitHub(){
+  const token = loadLocal('gh_token', '');
+  const repo = loadLocal('gh_repo', '');
+  if(!token || !repo) return;
+  try {
+    const owner = repo.split('/')[0];
+    const repoName = repo.split('/')[1];
+    const stateObj = {version:'3.7', base:BASE, mkt:MKT, mpx:MPX, mv:MV, txns:TXNS, research:RESEARCH, sources:SOURCES, logs:LOGS};
+    await ghPutFile(owner, repoName, 'data/state.json', JSON.stringify(stateObj, null, 2), token, 'Auto-update txns in data/state.json');
+    toast('✅ פעולה סונכרנה בהצלחה לענן (GitHub)!');
+  } catch(err) {
+    toast(`⚠️ שגיאה בעדכון GitHub: ${err.message}`);
+  }
+}
+
+$('txBody').addEventListener('click', async e=>{
   const delBtn = e.target.closest('[data-deltx]');
   if(delBtn){
     TXNS = TXNS.filter(x=>x.id!==delBtn.dataset.deltx);
     saveLocal('txns', TXNS);
     refreshAll();
-    toast('הפעולה נמחקה');
+    toast('הפעולה נמחקה. מסנכרן לענן...');
+    await pushStateToGitHub();
   }
 });
 
@@ -2599,32 +2651,69 @@ $('yhCsvInput').addEventListener('change', e=>{
     const headers = lines[0].split(',').map(h=>h.replace(/"/g,'').trim().toLowerCase());
     const symIdx = headers.findIndex(h=>h.includes('symbol'));
     const qtyIdx = headers.findIndex(h=> (h.includes('quantity') ? true : h.includes('shares')));
-    const costIdx = headers.findIndex(h=> (h.includes('purchase price') ? true : h.includes('cost')));
-    const pxIdx = headers.findIndex(h=> (h.includes('current price') ? true : h.includes('last')));
-    if(symIdx === -1){ toast('לא נמצאה עמודת Symbol בקובץ ה-CSV'); return; }
+    const priceIdx = headers.findIndex(h=>h.includes('price'));
+    const commIdx = headers.findIndex(h=>h.includes('commission'));
+    const dateIdx = headers.findIndex(h=> (h.includes('trade date') ? true : h.includes('date')));
+    const typeIdx = headers.findIndex(h=> (h.includes('transaction type') ? true : h.includes('type')));
 
-    const newHoldings = {};
-    let count = 0;
+    if(symIdx === -1 || qtyIdx === -1 || priceIdx === -1 || dateIdx === -1 || typeIdx === -1){
+      toast('חסרות עמודות חובה בקובץ (Symbol, Quantity, Price, Date, Type).');
+      return;
+    }
+
+    const txs = [];
     for(let i=1; i<lines.length; i++){
       const cols = lines[i].split(',').map(c=>c.replace(/"/g,'').trim());
       const t = String(orVal(cols[symIdx],'')).toUpperCase();
+      const type = String(orVal(cols[typeIdx],'')).toUpperCase();
       const sh = numOrZero(cols[qtyIdx]);
-      const pPrice = numOrZero(cols[costIdx]);
-      const curPx = parseFloat(cols[pxIdx]);
-      if(t && /^[A-Z.\-]{1,10}$/.test(t) && sh > 0){
-        newHoldings[t] = {sh, cost: sh * pPrice};
-        if(curPx > 0) MKT.quotes[t] = curPx;
-        count++;
+      const price = numOrZero(cols[priceIdx]);
+      const comm = commIdx !== -1 ? numOrZero(cols[commIdx]) : 0;
+      const date = String(orVal(cols[dateIdx],''));
+      if(t && /^[A-Z.\-]{1,10}$/.test(t) && sh > 0 && (type === 'BUY' || type === 'SELL')){
+        txs.push({t, type, sh, price, comm, date, _idx: lines.length - i});
       }
     }
+
+    txs.sort((a,b) => {
+      const dCmp = a.date.localeCompare(b.date);
+      if(dCmp !== 0) return dCmp;
+      if(a.type !== b.type) return a.type === 'BUY' ? -1 : 1;
+      return a._idx - b._idx;
+    });
+
+    const newHoldings = {};
+    let count = 0;
+    let realized = 0;
+    txs.forEach(tx => {
+      const {t, type, sh, price, comm} = tx;
+      if(!newHoldings[t]) newHoldings[t] = {sh: 0, cost: 0};
+
+      if(type === 'BUY'){
+        newHoldings[t].sh += sh;
+        newHoldings[t].cost += (sh * price) + comm;
+        count++;
+      } else if (type === 'SELL') {
+        const h = newHoldings[t];
+        const sellSh = Math.min(sh, h.sh);
+        const avgCost = h.sh > 0 ? h.cost / h.sh : 0;
+        const gain = (sellSh * price) - (sellSh * avgCost) - comm;
+        realized += gain;
+        h.sh -= sellSh;
+        h.cost -= sellSh * avgCost;
+        if(h.sh < 1e-6){ h.sh = 0; h.cost = 0; }
+        count++;
+      }
+    });
+
     if(count > 0){
-      BASE = {asOf: `Yahoo CSV (${file.name})`, holdings: newHoldings};
-      saveLocal('base', BASE); saveLocal('mkt', MKT);
+      BASE = {asOf: `Yahoo CSV (${file.name})`, realizedHistorical: realized, holdings: newHoldings};
+      saveLocal('base', BASE);
       refreshAll();
-      addLog('סוכן Yahoo Sync', 'ok', `נקלטו ${count} פוזיציות מקובץ Yahoo Finance (${file.name}).`);
-      toast(`✅ סונכרנו ${count} פוזיציות מחשבון Yahoo Finance שלך!`);
+      addLog('סוכן Yahoo Sync', 'ok', `עובדו ${count} פעולות מקובץ ${file.name}.`);
+      toast(`✅ סונכרנו אחזקות מחשבון Yahoo Finance (עובדו ${count} פעולות)!`);
     } else {
-      toast('לא נמצאו פוזיציות עם כמות מניות חיובית בקובץ.');
+      toast('לא נמצאו פעולות קניה/מכירה תקינות בקובץ.');
     }
   };
   reader.readAsText(file);
@@ -2643,7 +2732,7 @@ $('cash').addEventListener('input',calc);$('taxRate').addEventListener('input',c
 $('reset').addEventListener('click',()=>{Object.keys(DEFAULT_W).forEach(t=>{W[t]=DEFAULT_W[t]; const el=$('w_'+t); if(el) el.value=W[t];});calc();});
 $('sBuy').addEventListener('click',()=>setSide('buy'));$('sSell').addEventListener('click',()=>setSide('sell'));
 ['txTicker','txQty','txPrice','txFee'].forEach(id=>$(id).addEventListener('input',preview));
-$('txLast').addEventListener('click',()=>{ const p=priceOf(String(orVal($('txTicker').value,'')).trim().toUpperCase()); if(p){$('txPrice').value=p; preview();} });$('txForm').addEventListener('submit', e=>{
+$('txLast').addEventListener('click',()=>{ const p=priceOf(String(orVal($('txTicker').value,'')).trim().toUpperCase()); if(p){$('txPrice').value=p; preview();} });$('txForm').addEventListener('submit', async e=>{
   e.preventDefault();
   const v = formVals(); const err = $('txErr');
   if(!v.date || !v.t || !(v.qty>0) || !(v.price>0)){ err.textContent='נא למלא תאריך, סימול, כמות ומחיר תקינים.'; return; }
@@ -2651,7 +2740,8 @@ $('txLast').addEventListener('click',()=>{ const p=priceOf(String(orVal($('txTic
   saveLocal('txns', TXNS);
   $('txQty').value='';$('txNote').value='';
   refreshAll();
-  toast(`✅ נשמר: ${txSide==='buy'?'קנייה':'מכירה'} ${v.qty} ${v.t}`);
+  toast(`✅ נשמר: ${txSide==='buy'?'קנייה':'מכירה'} ${v.qty} ${v.t}. מסנכרן לענן...`);
+  await pushStateToGitHub();
 });
 $('tbody').addEventListener('click', e=>{
   const b=e.target.closest('button.mini');
@@ -2665,12 +2755,25 @@ $('tbody').addEventListener('click', e=>{
 });
 
 (function init(){
+  if(localStorage.getItem('gp37_migrated') !== 'true'){
+    for(let i=0; i<localStorage.length; i++){
+      const k = localStorage.key(i);
+      if(k && (k.startsWith('gp33_') || k.startsWith('gp34_') || k.startsWith('gp35_') || k.startsWith('gp36_'))) {
+        localStorage.removeItem(k);
+        i--;
+      }
+    }
+    BASE = BASE_EMBED;
+    MKT = MKT_EMBED;
+    localStorage.setItem('gp37_migrated', 'true');
+  }
   const d=new Date(); $('txDate').value = new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10);
   const savedYt = loadLocal('yt_key', null); if(savedYt) $('cfgYtKey').value = savedYt;
   const savedGem = loadLocal('gem_key', null); if(savedGem) $('cfgGemKey').value = savedGem;
   const savedTok = loadLocal('gh_token', null); if(savedTok) $('cfgGhToken').value = savedTok;
   showTab('agents');
   refreshAll();
+  pullStateFromCloud(true);
 })();
 </script>
 
