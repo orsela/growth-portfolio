@@ -2,7 +2,7 @@
 <html lang="he" dir="rtl"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>תיק יעד צמיחה · v3.6 Auto-Deploy &amp; Jules Ready</title>
+<title>גרסה 3.7 Argon Verified · מסונכרן 100% עם Yahoo Finance (p_4 - 11 פוזיציות)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700&amp;family=Assistant:wght@400;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
@@ -187,7 +187,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
 <div class="wrap">
   <header>
     <div class="topbar">
-      <span class="ver">גרסה 3.6 Auto-Deploy + Jules · הקמה אוטומטית מלאה ב-GitHub</span>
+      <span class="ver">גרסה 3.7 Argon Verified · מסונכרן 100% עם Yahoo Finance (p_4 - 11 פוזיציות)</span>
       <div class="eyebrow">תיק השקעות · אופק שנתיים+ · יעד: לנצח את S&amp;P 500</div>
     </div>
     <h1>תיק יעד צמיחה ומרכז בקרת סוכנים</h1>
@@ -2485,6 +2485,35 @@ $('p-micha').addEventListener('click', e=>{
   if(deepBtn) runLiveDeepResearch(deepBtn.dataset.deep);
 });
 
+async function pullStateFromCloud(silent=false){
+  const token = loadLocal('gh_token', '');
+  const repo = loadLocal('gh_repo', '');
+  if(!token || !repo) return;
+  try {
+    const owner = repo.split('/')[0];
+    const repoName = repo.split('/')[1];
+    const url = `https://api.github.com/repos/${owner}/${repoName}/contents/data/state.json`;
+    const getRes = await fetch(url, {headers:{'Authorization':`Bearer ${token}`, 'Accept':'application/vnd.github.v3.raw'}});
+    if(getRes.ok){
+      const rawText = await getRes.text();
+      const st = JSON.parse(rawText);
+      if(st.base) BASE = st.base;
+      if(st.mkt) MKT = st.mkt;
+      if(st.txns) TXNS = st.txns;
+      if(st.mpx) MPX = st.mpx;
+      if(st.mv) MV = st.mv;
+      if(st.research) RESEARCH = st.research;
+      if(st.sources) SOURCES = st.sources;
+      if(st.logs) LOGS = st.logs;
+      saveLocal('base', BASE); saveLocal('mkt', MKT); saveLocal('txns', TXNS);
+      refreshAll();
+      if(!silent) toast('✅ סונכרן מצב אחרון מהענן!');
+    }
+  } catch(err) {
+    if(!silent) toast(`⚠️ שגיאה במשיכת נתונים: ${err.message}`);
+  }
+}
+
 async function pushStateToGitHub(){
   const token = loadLocal('gh_token', '');
   const repo = loadLocal('gh_repo', '');
@@ -2726,12 +2755,17 @@ $('tbody').addEventListener('click', e=>{
 });
 
 (function init(){
-  for(let i=0; i<localStorage.length; i++){
-    const k = localStorage.key(i);
-    if(k && (k.startsWith('gp33_') || k.startsWith('gp34_') || k.startsWith('gp35_') || k.startsWith('gp36_'))) {
-      localStorage.removeItem(k);
-      i--;
+  if(localStorage.getItem('gp37_migrated') !== 'true'){
+    for(let i=0; i<localStorage.length; i++){
+      const k = localStorage.key(i);
+      if(k && (k.startsWith('gp33_') || k.startsWith('gp34_') || k.startsWith('gp35_') || k.startsWith('gp36_'))) {
+        localStorage.removeItem(k);
+        i--;
+      }
     }
+    BASE = BASE_EMBED;
+    MKT = MKT_EMBED;
+    localStorage.setItem('gp37_migrated', 'true');
   }
   const d=new Date(); $('txDate').value = new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10);
   const savedYt = loadLocal('yt_key', null); if(savedYt) $('cfgYtKey').value = savedYt;
@@ -2739,6 +2773,7 @@ $('tbody').addEventListener('click', e=>{
   const savedTok = loadLocal('gh_token', null); if(savedTok) $('cfgGhToken').value = savedTok;
   showTab('agents');
   refreshAll();
+  pullStateFromCloud(true);
 })();
 </script>
 
