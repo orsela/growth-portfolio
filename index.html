@@ -2,7 +2,7 @@
 <html lang="he" dir="rtl"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>גרסה 3.7 Argon Verified · מסונכרן 100% עם Yahoo Finance (p_4 - 11 פוזיציות)</title>
+<title>גרסה 3.9 Live · מסונכרן ענן ו-Yahoo Finance (11 פוזיציות)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700&amp;family=Assistant:wght@400;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
@@ -187,7 +187,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
 <div class="wrap">
   <header>
     <div class="topbar">
-      <span class="ver">גרסה 3.7 Argon Verified · מסונכרן 100% עם Yahoo Finance (p_4 - 11 פוזיציות)</span>
+      <span class="ver">גרסה 3.9 Live · מסונכרן ענן ו-Yahoo Finance (11 פוזיציות)</span>
       <div class="eyebrow">תיק השקעות · אופק שנתיים+ · יעד: לנצח את S&amp;P 500</div>
     </div>
     <h1>תיק יעד צמיחה ומרכז בקרת סוכנים</h1>
@@ -196,7 +196,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
     <p class="stamp" id="baseNote">כמויות: 2026-10-04 (Yahoo Sync)</p>
   </header>
 
-  <div class="live-bar" id="liveBar">
+  <div class="live-bar" id="liveBar" style="display:none">
     <span id="liveBarTxt">🚀 שלב 4/5: מעלה את הדשבורד index.html ואת סוכן התזמון orchestrator.yml...</span>
     <button type="button" class="mini" id="btnCloseLiveBar">סגור</button>
   </div>
@@ -214,7 +214,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
   <div class="tabpanel" id="p-agents">
 
     <!-- אשף ההקמה האוטומטית ב-GitHub + חיבור ל-Jules -->
-    <section class="deploy-box">
+    <section class="deploy-box" id="ghWizardCard" style="display:none">
       <div class="topbar">
         <div>
           <div style="display:flex;align-items:center;gap:10px">
@@ -1469,9 +1469,9 @@ const BASE_EMBED = {
   }
 };
 const MKT_EMBED = {
-  asOf:'2026-10-09T20:00:00Z', session:'close', maAsOf:'2026-10-09',
+  asOf:'2026-10-19T11:52:24Z', session:'close', maAsOf:'2026-10-19',
   quotes:{"PLTR": 207.64, "NVDA": 225.30, "GOOG": 353.28, "GEV": 976.73, "SPY": 775.38, "SPOT": 524.47, "NOW": 142.21, "NBIS": 189.35, "AVGO": 350.88, "RKLB": 63.02, "SOFI": 14.81, "ALAB": 342.21, "TSM": 472.78, "LLY": 1142.85, "MELI": 1696.56, "ISRG": 391.95, "CRWD": 252.45, "AMZN": 258.83, "MA": 552.26, "DASH": 189.15},
-  ma:{ALAB:[317.46,246.36,277.33],PLTR:[168.47,152.08,149.11],GOOG:[341.47,337.11,343.01],NVDA:[217.4,200.15,205.75],NOW:[127.49,116.03,111.58],GEV:[965.84,914.39,982.62],NBIS:[218.13,166.21,192.36],TSM:[422.99,385.41,404.91],AVGO:[373.97,367.42,378.12],LLY:[1178.28,1072.06,1080.72],MELI:[1862.3,1838.96,1769.35],ISRG:[378.84,448.05,419.15],CRWD:[218.07,152.8,168.02],RKLB:[69.68,81.32,82.98],SOFI:[17.47,18.99,17.28],SPY:[762.74,719.62,731.37],AMZN:[256.12,241.11,246.29],MA:[569.64,532.42,527.46],DASH:[205.59,187.77,181.03],SPOT:[516.19,501.95,495.16]},
+  ma:{ALAB:[315.33,249.81,283.56],PLTR:[182.57,152.65,152.25],GOOG:[341.45,339.13,345.77],NVDA:[223.08,202.97,208.81],NOW:[134.85,115.03,113.18],GEV:[963.84,933.68,992.54],NBIS:[222.8,174.04,199.91],TSM:[434.36,395.05,411.63],AVGO:[365.73,368.19,379.9],LLY:[1180.35,1079.91,1093.59],MELI:[1859.98,1831.59,1777.22],ISRG:[391.67,439.63,414.38],CRWD:[233.17,160.56,178.29],RKLB:[69.23,81.26,82.64],SOFI:[17.09,18.37,17.07],SPY:[768.5,725.01,737.89],AMZN:[257.08,242.73,249.2],MA:[575.61,533.0,532.49],DASH:[204.92,184.78,182.27],SPOT:[521.03,497.37,494.43]},
   targets:{ALAB:[391.77,190,500,"Buy"],PLTR:[195.57,80,255,"Buy"],GOOG:[422.34,340,475,"Strong Buy"],NVDA:[327.7,180,515,"Strong Buy"],NOW:[144.99,72,248,"Strong Buy"],GEV:[1237,940,1450,"Buy"],NBIS:[276.26,84,415,"Buy"],TSM:[552.26,440,700,"Strong Buy"],AVGO:[531.85,215.88,715,"Strong Buy"],LLY:[1325,930,1600,"Buy"],MELI:[2272,1750,2800,"Buy"],ISRG:[476.34,324,685,"Buy"],CRWD:[235.67,132,300,"Buy"],RKLB:[109.37,64,150,"Buy"],SOFI:[20.35,12,30,"Hold"],AMZN:[329.54,230,405,"Strong Buy"],MA:[666.71,550,740,"Strong Buy"],DASH:[256.26,172,350,"Buy"],SPOT:[602.61,414.68,710.88,"Buy"]}
 };
 const MICHA_EMBED = {
@@ -2969,6 +2969,12 @@ function runUnitTests(){
 }
 
 (function init(){
+  if(localStorage.getItem('gp38_v39_live_sync') !== 'true'){
+    localStorage.removeItem('gp38_mkt');
+    localStorage.removeItem('gp38_base');
+    localStorage.setItem('gp38_v39_live_sync', 'true');
+  }
+
   if(localStorage.getItem('gp37_migrated') !== 'true'){
     for(let i=0; i<localStorage.length; i++){
       const k = localStorage.key(i);
@@ -2981,13 +2987,32 @@ function runUnitTests(){
     MKT = MKT_EMBED;
     localStorage.setItem('gp37_migrated', 'true');
   }
+
   const d=new Date(); $('txDate').value = new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10);
-  $('cfgYtKey').value = SESSION_SECRETS.ytKey;
-  $('cfgGemKey').value = SESSION_SECRETS.gemKey;
-  $('cfgGhToken').value = SESSION_SECRETS.ghToken;
+  $('cfgYtKey').value = SESSION_SECRETS.ytKey || '';
+  $('cfgGemKey').value = SESSION_SECRETS.gemKey || '';
+  $('cfgGhToken').value = SESSION_SECRETS.ghToken || '';
   showTab('overview');
-  refreshAll();
-  pullStateFromCloud(true);
+
+  fetch('./data/state.json?t=' + Date.now(), {cache: "no-store"})
+    .then(r => r.json())
+    .then(st => {
+      if(st.base) BASE = st.base;
+      if(st.mkt) MKT = st.mkt;
+      if(st.txns) TXNS = st.txns;
+      if(st.mpx) MPX = st.mpx;
+      if(st.mv) MV = st.mv;
+      if(st.research) RESEARCH = st.research;
+      if(st.sources) SOURCES = st.sources;
+      if(st.logs) LOGS = st.logs;
+      refreshAll();
+      runLiveYahooMarketAgent();
+    })
+    .catch(err => {
+      console.error("Failed to fetch state.json on init", err);
+      refreshAll();
+      runLiveYahooMarketAgent();
+    });
 })();
 </script>
 

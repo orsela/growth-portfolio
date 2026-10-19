@@ -75,9 +75,21 @@ def main():
     success_count = 0
 
     # Run market agent
+    import requests
+    import pandas as pd
+    session = requests.Session()
+    session.headers.update({'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'})
     for t in CORE:
         try:
-            h = yf.Ticker(t).history(period='1y', interval='1d', auto_adjust=False)
+            ticker_obj = yf.Ticker(t, session=session)
+            h = ticker_obj.history(period='1y', interval='1d', auto_adjust=False)
+
+            if h.empty:
+                # Fallback to yf.download if history() returns empty
+                h = yf.download(t, period="1y", interval="1d", group_by="ticker", threads=False, session=session)
+                if isinstance(h.columns, pd.MultiIndex):
+                     h.columns = h.columns.droplevel(0)
+
             c = h['Close'].dropna().tolist()
 
             if not c or c[-1] <= 0:
@@ -103,6 +115,9 @@ def main():
     if success_count > 0:
         mkt['asOf'] = now_str
         mkt['lastSuccessAt'] = now_str
+        mkt['maAsOf'] = now_str.split('T')[0]
+
+    st['version'] = '3.9-live'
 
     # Run youtube agent
     extract_youtube_transcripts(st)
