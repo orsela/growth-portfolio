@@ -2,7 +2,7 @@
 <html lang="he" dir="rtl"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>גרסה 3.7 Argon Verified · מסונכרן 100% עם Yahoo Finance (p_4 - 11 פוזיציות)</title>
+<title>גרסה 3.9 Live · מסונכרן ענן ו-Yahoo Finance (11 פוזיציות)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700&amp;family=Assistant:wght@400;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
@@ -187,7 +187,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
 <div class="wrap">
   <header>
     <div class="topbar">
-      <span class="ver">גרסה 3.7 Argon Verified · מסונכרן 100% עם Yahoo Finance (p_4 - 11 פוזיציות)</span>
+      <span class="ver">גרסה 3.9 Live · מסונכרן ענן ו-Yahoo Finance (11 פוזיציות)</span>
       <div class="eyebrow">תיק השקעות · אופק שנתיים+ · יעד: לנצח את S&amp;P 500</div>
     </div>
     <h1>תיק יעד צמיחה ומרכז בקרת סוכנים</h1>
@@ -196,7 +196,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
     <p class="stamp" id="baseNote">כמויות: 2026-10-04 (Yahoo Sync)</p>
   </header>
 
-  <div class="live-bar" id="liveBar">
+  <div class="live-bar" id="liveBar" style="display:none">
     <span id="liveBarTxt">🚀 שלב 4/5: מעלה את הדשבורד index.html ואת סוכן התזמון orchestrator.yml...</span>
     <button type="button" class="mini" id="btnCloseLiveBar">סגור</button>
   </div>
@@ -214,7 +214,7 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
   <div class="tabpanel" id="p-agents">
 
     <!-- אשף ההקמה האוטומטית ב-GitHub + חיבור ל-Jules -->
-    <section class="deploy-box">
+    <section class="deploy-box" id="ghWizardCard" style="display:none">
       <div class="topbar">
         <div>
           <div style="display:flex;align-items:center;gap:10px">
@@ -605,8 +605,8 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
       <h2>מבנה תיק היעד</h2>
       <div class="tbl-wrap">
         <table class="struct">
-          <thead><tr><th>קבוצה</th><th>משקל יעד</th><th>משקל היום</th><th>ניירות</th></tr></thead>
-          <tbody id="structBody"><tr><td><span class="sw" style="background:var(--g-ai);margin-inline-end:8px"></span>AI – ליבה</td><td class="num c">55%</td><td class="num c dim">82%</td><td><b>PLTR</b> · <b>GOOG</b> · <b>NVDA</b> · <b>NOW</b> · <b>GEV</b> · <b>NBIS</b></td></tr><tr><td><span class="sw" style="background:var(--g-chain);margin-inline-end:8px"></span>AI – שרשרת אספקה</td><td class="num c">12%</td><td class="num c dim">0%</td><td><b>TSM</b> · <b>AVGO</b></td></tr><tr><td><span class="sw" style="background:var(--g-growth);margin-inline-end:8px"></span>צמיחה לא-AI</td><td class="num c">16%</td><td class="num c dim">0%</td><td><b>LLY</b> · <b>MELI</b> · <b>SPOT</b></td></tr><tr><td><span class="sw" style="background:var(--g-spec);margin-inline-end:8px"></span>ספקולטיבי</td><td class="num c">10%</td><td class="num c dim">11%</td><td><b>RKLB</b> · <b>SOFI</b></td></tr><tr><td><span class="sw" style="background:var(--g-index);margin-inline-end:8px"></span>מדד (בנצ'מרק)</td><td class="num c">7%</td><td class="num c dim">7%</td><td><b>SPY</b></td></tr></tbody>
+          <thead><tr><th>קבוצה</th><th>משקל משוערך (Target)</th><th>משקל בפועל (Actual)</th><th>סטייה (Deviation)</th><th>פער דולרי (Delta)</th><th>ניירות</th></tr></thead>
+          <tbody id="structBody"></tbody>
         </table>
       </div>
     </section>
@@ -1469,9 +1469,9 @@ const BASE_EMBED = {
   }
 };
 const MKT_EMBED = {
-  asOf:'2026-10-09T20:00:00Z', session:'close', maAsOf:'2026-10-09',
+  asOf:'2026-10-19T11:52:24Z', session:'close', maAsOf:'2026-10-19',
   quotes:{"PLTR": 207.64, "NVDA": 225.30, "GOOG": 353.28, "GEV": 976.73, "SPY": 775.38, "SPOT": 524.47, "NOW": 142.21, "NBIS": 189.35, "AVGO": 350.88, "RKLB": 63.02, "SOFI": 14.81, "ALAB": 342.21, "TSM": 472.78, "LLY": 1142.85, "MELI": 1696.56, "ISRG": 391.95, "CRWD": 252.45, "AMZN": 258.83, "MA": 552.26, "DASH": 189.15},
-  ma:{ALAB:[317.46,246.36,277.33],PLTR:[168.47,152.08,149.11],GOOG:[341.47,337.11,343.01],NVDA:[217.4,200.15,205.75],NOW:[127.49,116.03,111.58],GEV:[965.84,914.39,982.62],NBIS:[218.13,166.21,192.36],TSM:[422.99,385.41,404.91],AVGO:[373.97,367.42,378.12],LLY:[1178.28,1072.06,1080.72],MELI:[1862.3,1838.96,1769.35],ISRG:[378.84,448.05,419.15],CRWD:[218.07,152.8,168.02],RKLB:[69.68,81.32,82.98],SOFI:[17.47,18.99,17.28],SPY:[762.74,719.62,731.37],AMZN:[256.12,241.11,246.29],MA:[569.64,532.42,527.46],DASH:[205.59,187.77,181.03],SPOT:[516.19,501.95,495.16]},
+  ma:{ALAB:[315.33,249.81,283.56],PLTR:[182.57,152.65,152.25],GOOG:[341.45,339.13,345.77],NVDA:[223.08,202.97,208.81],NOW:[134.85,115.03,113.18],GEV:[963.84,933.68,992.54],NBIS:[222.8,174.04,199.91],TSM:[434.36,395.05,411.63],AVGO:[365.73,368.19,379.9],LLY:[1180.35,1079.91,1093.59],MELI:[1859.98,1831.59,1777.22],ISRG:[391.67,439.63,414.38],CRWD:[233.17,160.56,178.29],RKLB:[69.23,81.26,82.64],SOFI:[17.09,18.37,17.07],SPY:[768.5,725.01,737.89],AMZN:[257.08,242.73,249.2],MA:[575.61,533.0,532.49],DASH:[204.92,184.78,182.27],SPOT:[521.03,497.37,494.43]},
   targets:{ALAB:[391.77,190,500,"Buy"],PLTR:[195.57,80,255,"Buy"],GOOG:[422.34,340,475,"Strong Buy"],NVDA:[327.7,180,515,"Strong Buy"],NOW:[144.99,72,248,"Strong Buy"],GEV:[1237,940,1450,"Buy"],NBIS:[276.26,84,415,"Buy"],TSM:[552.26,440,700,"Strong Buy"],AVGO:[531.85,215.88,715,"Strong Buy"],LLY:[1325,930,1600,"Buy"],MELI:[2272,1750,2800,"Buy"],ISRG:[476.34,324,685,"Buy"],CRWD:[235.67,132,300,"Buy"],RKLB:[109.37,64,150,"Buy"],SOFI:[20.35,12,30,"Hold"],AMZN:[329.54,230,405,"Strong Buy"],MA:[666.71,550,740,"Strong Buy"],DASH:[256.26,172,350,"Buy"],SPOT:[602.61,414.68,710.88,"Buy"]}
 };
 const MICHA_EMBED = {
@@ -1506,12 +1506,18 @@ const LV_ORDER = ['PLTR','GOOG','NVDA','NOW','GEV','NBIS','TSM','AVGO','ALAB','L
 let FLAGSHIP = {t:'PLTR', lead:1.05, tranches:2, defer:true, deferSince:'04.10', watch:187};
 let ZONE_BAND_PCT = 3.0;
 let TRIM_PCT = 8.0;
+let LOCAL_DIRTY = false;
 
 function loadLocal(key, fallback){
-  try{ const v = localStorage.getItem('gp37_' + key); return v ? JSON.parse(v) : fallback; }catch(_){ return fallback; }
+  try{ const v = localStorage.getItem('gp38_' + key); return v ? JSON.parse(v) : fallback; }catch(_){ return fallback; }
 }
 function saveLocal(key, val){
-  try{ localStorage.setItem('gp37_' + key, JSON.stringify(val)); }catch(_){}
+  try{
+    localStorage.setItem('gp38_' + key, JSON.stringify(val));
+    if(['base', 'txns', 'agents_cfg', 'entry'].includes(key)){
+      LOCAL_DIRTY = true;
+    }
+  }catch(_){}
 }
 
 let ENTRY = loadLocal('entry', {TSM:'zone', AVGO:'reclaim', ALAB:'zone', LLY:'zone', MELI:'reclaim', AMZN:'zone', MA:'zone', DASH:'reclaim', SPOT:'reclaim'});
@@ -1615,8 +1621,7 @@ function buildOrchestratorYmlContent(){
     "          git config --local user.email 'agents@growth-portfolio.local'",
     "          git config --local user.name 'Portfolio Agents Bot'",
     "          git add data/state.json",
-    "          git diff --staged --quiet ? true : git commit -m 'Auto-update state.json'",
-    "          git push"
+    "          if git diff --staged --quiet; then echo \"No changes\"; else git commit -m \"chore(agents): sync state\" && git push origin main; fi"
   ].join("\n");
 }
 
@@ -1681,25 +1686,29 @@ async function autoDeployToGitHub(){
     });
 
     setLiveStatus('🚀 שלב 3/5: כותב את מסד הנתונים data/state.json ואת מנוע הסוכנים cloud_agents.py...');
-    const stateObj = {version:'3.6', base:BASE, mkt:MKT, mpx:MPX, mv:MV, txns:TXNS, research:RESEARCH, sources:SOURCES, logs:LOGS};
+    const stateObj = {schemaVersion:'3.8.0', base:BASE, mkt:MKT, mpx:MPX, mv:MV, txns:TXNS, research:RESEARCH, sources:SOURCES, logs:LOGS};
     await ghPutFile(owner, repoName, 'data/state.json', JSON.stringify(stateObj, null, 2), token, 'Initialize data/state.json');
     await ghPutFile(owner, repoName, 'cloud_agents.py', buildCloudAgentsPyContent(), token, 'Add cloud_agents.py');
 
     setLiveStatus('🚀 שלב 4/5: מעלה את הדשבורד index.html ואת סוכן התזמון orchestrator.yml...');
     const fullHtml = '<!doctype html>\n' + document.documentElement.outerHTML;
     await ghPutFile(owner, repoName, 'index.html', fullHtml, token, 'Deploy index.html dashboard');
-    try{
-      await ghPutFile(owner, repoName, '.github/workflows/orchestrator.yml', buildOrchestratorYmlContent(), token, 'Add GitHub Actions orchestrator');
-    }catch(_){}
+    await ghPutFile(owner, repoName, '.github/workflows/orchestrator.yml', buildOrchestratorYmlContent(), token, 'Add GitHub Actions orchestrator');
 
     setLiveStatus('🚀 שלב 5/5: מפעיל את האתר החי שלך ב-GitHub Pages...');
-    try{
-      await fetch(`https://api.github.com/repos/${owner}/${repoName}/pages`, {
-        method: 'POST',
-        headers: {'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json'},
-        body: JSON.stringify({source: {branch: 'main', path: '/'}})
-      });
-    }catch(_){}
+    const pagesRes = await fetch(`https://api.github.com/repos/${owner}/${repoName}/pages`, {
+      method: 'POST',
+      headers: {'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json'},
+      body: JSON.stringify({source: {branch: 'main', path: '/'}})
+    });
+
+    if(!pagesRes.ok){
+      const pagesErr = await pagesRes.json();
+      // Only throw if the error isn't just saying pages is already enabled
+      if(!String(pagesErr.message).includes("already exists")) {
+        throw new Error(pagesErr.message || 'שגיאה בהפעלת GitHub Pages');
+      }
+    }
 
     const repoUrl = `https://github.com/${owner}/${repoName}`;
     const pagesUrl = `https://${owner}.github.io/${repoName}/`;
@@ -1755,13 +1764,17 @@ function entryFor(t){
   const held = HOLD[t] && HOLD[t].sh>0;
   if(!rule || held || !L || !L.s150) return null;
   const band = ZONE_BAND_PCT / 100;
+
+  let explanation = '';
   if(rule==='zone'){
     const lo=L.s150*(1-band), hi=L.s150*(1+band), ok = L.p>=lo && L.p<=hi;
-    return {rule, ok, price:L.s150, html:`<div class="entry"><b>${px(lo)} – ${px(hi)}</b><small>לימיט באזור ממוצע 150</small>${ok?'<small class="ok">המחיר באזור עכשיו</small>':`<small>${L.p>hi?'עוד '+((L.p/hi-1)*100).toFixed(1)+'% ירידה':'מתחת לאזור'}</small>`}</div>`};
+    explanation = ok ? 'המחיר באזור עכשיו -> פעולה: ניתן להזין פקודה' : (L.p>hi ? `עוד ${((L.p/hi-1)*100).toFixed(1)}% ירידה -> פעולה: המתנה` : 'מתחת לאזור -> פעולה: המתנה (מחוץ לתחום)');
+    return {rule, ok, price:L.s150, html:`<div class="entry"><b>${px(lo)} – ${px(hi)}</b><small>כלל: לימיט באזור ממוצע 150</small><small class="${ok?'ok':''}">${explanation}</small></div>`};
   }
   const s200Val = L.s200 ? L.s200 : 0;
   const lvl = Math.max(L.s150, s200Val), ok = L.p>lvl;
-  return {rule, ok, price:lvl, html:`<div class="entry"><b>סגירה מעל ${px(lvl)}</b><small>חזרה מעל ממוצעי 150/200</small>${ok?'<small class="ok">מעל הרמה – לאשר בסגירה שבועית</small>':`<small>עוד ${((lvl/L.p-1)*100).toFixed(1)}% עלייה</small>`}</div>`};
+  explanation = ok ? 'מעל הרמה -> פעולה: לאשר בסגירה שבועית' : `עוד ${((lvl/L.p-1)*100).toFixed(1)}% עלייה -> פעולה: המתנה (מתחת לרמה)`;
+  return {rule, ok, price:lvl, html:`<div class="entry"><b>סגירה מעל ${px(lvl)}</b><small>כלל: חזרה מעל ממוצעי 150/200</small><small class="${ok?'ok':''}">${explanation}</small></div>`};
 }
 
 function computeLevels(){
@@ -1774,16 +1787,15 @@ function computeLevels(){
     const ma = maSrc[t] ? maSrc[t] : MKT_EMBED.ma[t];
     const tg = tgSrc[t] ? tgSrc[t] : MKT_EMBED.targets[t];
     const held = HOLD[t] && HOLD[t].sh>0 ? 1 : 0;
-    if(!ma || p===null){ LVMAP[t] = {t,p,held,st:'na',s150:null,dist:null,ta:null,up:null,r:tg?tg[3]:'—'}; return; }
-    const [s50,s200] = ma;
-    const est = !(ma[2]>0);
-    const s150 = est ? s50 + (s200-s50)*2/3 : +ma[2];
+
+    if(!ma || p===null || ma[2] == null){ LVMAP[t] = {t,p,held,st:'na',s150:null,dist:null,ta:null,up:null,r:tg?tg[3]:'—'}; return; }
+    const [s50,s200,s150] = ma;
     const dist = (p/s150-1)*100;
     const ta = tg ? tg[0] : null;
     const up = ta ? (ta/p-1)*100 : null;
     let st = Math.abs(dist)<=ZONE_BAND_PCT ? 'zone' : dist>ZONE_BAND_PCT ? 'wait' : 'under';
     if(held && up!==null && up<TRIM_PCT && dist>ZONE_BAND_PCT) st='trim';
-    LVMAP[t] = {t,p,s50,s200,s150,est,dist,ta,tl:tg?tg[1]:null,th:tg?tg[2]:null,up,r:tg?tg[3]:(t==='SPY'?'בנצ\'מרק':'—'),held,st};
+    LVMAP[t] = {t,p,s50,s200,s150,est:false,dist,ta,tl:tg?tg[1]:null,th:tg?tg[2]:null,up,r:tg?tg[3]:(t==='SPY'?'בנצ\'מרק':'—'),held,st};
   });
 }
 
@@ -1926,9 +1938,21 @@ function calc(){
   $('fNet').textContent = (net>=0?'+':'')+usd(net);
   $('fGain').textContent = (gainSum>=0?'+':'')+usd(gainSum);
   $('fGain').className = 'num '+(gainSum>=0?'pos':'neg');
-  $('taxLine').textContent = mode!=='cash'
-    ? `אומדן מס על הרווח הנטו מהמכירות (${Math.round(taxRate*100)}%): ${usd(Math.max(0,gainSum)*taxRate)}.`
-    : 'במצב כסף חדש בלבד אין מכירות ואין אירוע מס.';
+
+  const baseRealized = BASE.realizedHistorical !== undefined ? BASE.realizedHistorical : 5116.18;
+  const localRealized = REALIZED.total || 0;
+  const estRebalanceGain = gainSum;
+
+  if(mode !== 'cash') {
+    $('taxLine').innerHTML = `
+      <div><strong>רווח ממומש היסטורי:</strong> ${usd(baseRealized)}</div>
+      <div><strong>רווח ממומש מקומי:</strong> ${usd(localRealized)}</div>
+      <div><strong>אומדן מס משוער בלבד - אינו חבות מס סופית על רווח נטו עתידי ממכירות (${Math.round(taxRate*100)}%):</strong> ${usd(Math.max(0,estRebalanceGain)*taxRate)}</div>
+    `;
+  } else {
+    $('taxLine').textContent = 'במצב כסף חדש בלבד אין מכירות ואין אירוע מס.';
+  }
+
   drawBars(ROWS.map((r,i)=>r.mv+trade[i]));
   drawPatient(sells,buys,cash,{waitSells,waitCash,skipBuys});
 }
@@ -1961,10 +1985,23 @@ function drawStruct(){
     if(!rs.length) return '';
     const wt = rs.reduce((a,r)=>a+r.w,0)/wsum*100;
     const now = rs.reduce((a,r)=>a+r.mv,0)/totDenom*100;
+
+    const deviation = now - wt;
+    const devCls = Math.abs(deviation) > 2 ? 'neg' : (Math.abs(deviation) > 0.5 ? 'warn' : 'pos');
+    const dollarDelta = (deviation / 100) * total;
+
     if(wt<0.05 && now<0.05) return '';
     const activeTickers = rs.filter(r => (r.w > 0 ? true : r.sh > 0)).map(r=>`<b>${r.t}</b>`).join(' · ');
     const list = activeTickers ? activeTickers : '<span class="dim">—</span>';
-    return `<tr><td><span class="sw" style="background:var(${GROUPS[g].c});margin-inline-end:8px"></span>${GROUPS[g].name}</td><td class="num c">${Math.round(wt)}%</td><td class="num c dim">${Math.round(now)}%</td><td>${list}</td></tr>`;
+
+    return `<tr>
+      <td><span class="sw" style="background:var(${GROUPS[g].c});margin-inline-end:8px"></span>${GROUPS[g].name}</td>
+      <td class="num c">${Math.round(wt)}%</td>
+      <td class="num c dim">${Math.round(now)}%</td>
+      <td class="num c ${devCls}">${deviation > 0 ? '+' : ''}${deviation.toFixed(1)}%</td>
+      <td class="num c ${devCls}">${dollarDelta > 0 ? '+' : ''}${usd(dollarDelta,0)}</td>
+      <td>${list}</td>
+    </tr>`;
   }).join('');
 }
 function drawBars(afterVals){
@@ -2226,6 +2263,13 @@ async function fetchWithTimeout(url, options = {}, timeoutMs = 4500){
   }
 }
 
+function computeExactSMA(closes, window){
+  const validCloses = closes.filter(c => typeof c === 'number' && c > 0 && isFinite(c));
+  if(validCloses.length < window) return null;
+  const sum = validCloses.slice(-window).reduce((a,b)=>a+b,0);
+  return +(sum / window).toFixed(2);
+}
+
 async function fetchYahooSingle(ticker){
   const yfSym = ticker === 'BTC' ? 'BTC-USD' : ticker;
   const targetUrl = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(yfSym)}?range=1y&interval=1d`;
@@ -2241,12 +2285,13 @@ async function fetchYahooSingle(ticker){
       const result = data?.chart?.result?.[0];
       const rawCloses = result?.indicators?.quote?.[0]?.close;
       const closes = (rawCloses ? rawCloses : []).filter(v => v != null && !Number.isNaN(v));
-      if(closes.length >= 20){
+      if(closes.length > 0){
         const p = closes[closes.length - 1];
-        const s50 = closes.slice(-50).reduce((a,b)=>a+b,0) / Math.min(50, closes.length);
-        const s200 = closes.slice(-200).reduce((a,b)=>a+b,0) / Math.min(200, closes.length);
-        const s150 = closes.length >= 150 ? closes.slice(-150).reduce((a,b)=>a+b,0) / 150 : 0;
-        return {t: ticker, p: +p.toFixed(2), ma: [+s50.toFixed(2), +s200.toFixed(2), +s150.toFixed(2)]};
+        if(!isFinite(p) || p <= 0) continue;
+        const s50 = computeExactSMA(closes, 50);
+        const s200 = computeExactSMA(closes, 200);
+        const s150 = computeExactSMA(closes, 150);
+        return {t: ticker, p: +p.toFixed(2), ma: [s50, s200, s150]};
       }
     }catch(_){}
   }
@@ -2257,30 +2302,40 @@ async function runLiveYahooMarketAgent(){
   setLiveStatus('⏳ סוכן השוק פונה ל-Yahoo Finance ומחשב SMA 150 מדויק...');
   addLog('סוכן שוק (Yahoo)', 'running', 'מושך מחירים ו-150 סגירות אחרונות מ-Yahoo Finance...');
 
-  const results = await Promise.all(LV_ORDER.map(t => fetchYahooSingle(t)));
+  const resultsSettled = await Promise.allSettled(LV_ORDER.map(t => fetchYahooSingle(t)));
   let updated = 0;
-  results.forEach(r => {
-    if(r){
-      MKT.quotes[r.t] = r.p;
-      MKT.ma[r.t] = r.ma;
+  resultsSettled.forEach(res => {
+    if(res.status === 'fulfilled' && res.value){
+      MKT.quotes[res.value.t] = res.value.p;
+      MKT.ma[res.value.t] = res.value.ma;
       updated++;
     }
   });
 
   const nowStr = new Date().toISOString();
-  MKT.asOf = nowStr;
-  MKT.maAsOf = nowStr.slice(0,10);
+  MKT.lastAttemptAt = nowStr;
+
+  if(updated > 0){
+    MKT.asOf = nowStr;
+    MKT.lastSuccessAt = nowStr;
+    MKT.maAsOf = nowStr.slice(0,10);
+  }
+
   saveLocal('mkt', MKT);
   refreshAll();
 
-  if(updated > 0){
-    setLiveStatus(`✅ סוכן השוק סיים: עודכנו ${updated} ניירות מ-Yahoo Finance!`);
-    addLog('סוכן שוק (Yahoo)', 'ok', `עודכנו בהצלחה ${updated} מניות כולל חישוב SMA 150.`);
-    toast(`✅ עודכנו ${updated} ניירות מ-Yahoo Finance!`);
+  if(updated === LV_ORDER.length){
+    setLiveStatus(`תקין (עודכנו ${updated} ניירות)`);
+    addLog('סוכן שוק (Yahoo)', 'ok', `עודכנו בהצלחה ${updated} מניות.`);
+    toast(`✅ עודכנו כל ${updated} הניירות!`);
+  } else if (updated > 0) {
+    setLiveStatus(`עדכון חלקי (${updated}/${LV_ORDER.length})`);
+    addLog('סוכן שוק (Yahoo)', 'warn', `עודכנו בהצלחה רק ${updated} מתוך ${LV_ORDER.length} מניות.`);
+    toast(`⚠️ עדכון חלקי - ${updated}/${LV_ORDER.length} ניירות עודכנו.`);
   } else {
-    setLiveStatus('ℹ️ מוצגים נתוני השוק והממוצעים המאומתים.');
-    addLog('סוכן שוק (Yahoo)', 'ok', 'נתוני השוק והממוצעים פעילים ומוצגים.');
-    toast('ℹ️ נתוני השוק והממוצעים מעודכנים ופעילים.');
+    setLiveStatus('כשל סנכרון - מציג נתונים שמורים');
+    addLog('סוכן שוק (Yahoo)', 'error', 'כשל בסנכרון כל המניות - מוצגים נתוני השוק והממוצעים השמורים.');
+    toast('❌ כשל סנכרון שוק - מוצגים נתונים שמורים.');
   }
 }
 
@@ -2446,9 +2501,30 @@ function formVals(){
     note: String(orVal($('txNote').value,'')).trim().slice(0,200)
   };
 }
+function validateTransactionInput(v, side, holdings){
+  if(!v.date) return 'נא להזין תאריך ביצוע תקין.';
+  if(!v.t || v.t.trim().length === 0) return 'נא להזין טיקר תקין.';
+  if(!(v.qty > 0)) return 'הכמות חייבת להיות מספר חיובי גדול מאפס.';
+  if(!(v.price > 0)) return 'המחיר חייב להיות חיובי גדול מאפס.';
+  if(v.fee < 0) return 'העמלה אינה יכולה להיות שלילית.';
+
+  const h = holdings[v.t] ? holdings[v.t] : {sh:0,cost:0};
+  if(side === 'sell' && v.qty > h.sh + 1e-9) {
+    return `לא ניתן למכור יותר מניות ממה שקיים בתיק (${qfmt(h.sh)} מניות).`;
+  }
+  return null;
+}
+
 function preview(){
   const v = formVals(); const out = $('txPreview'); const err =$('txErr'); err.textContent='';
   if(!v.t || !(v.qty>0) || !(v.price>0)){ out.textContent = 'מלא נייר, כמות ומחיר כדי לראות את ההשפעה על התיק.'; return; }
+
+  const validationError = validateTransactionInput(v, txSide, HOLD);
+  if(validationError){
+    err.textContent = validationError;
+    return;
+  }
+
   const h = HOLD[v.t] ? HOLD[v.t] : {sh:0,cost:0};
   const avg = h.sh>0 ? h.cost/h.sh : 0;
   if(txSide==='buy'){
@@ -2486,9 +2562,16 @@ $('p-micha').addEventListener('click', e=>{
 });
 
 async function pullStateFromCloud(silent=false){
-  const token = loadLocal('gh_token', '');
+  const token = SESSION_SECRETS.ghToken;
   const repo = loadLocal('gh_repo', '');
   if(!token || !repo) return;
+
+  if(LOCAL_DIRTY && !silent) {
+    if(!confirm('בוצעו שינויים מקומיים (כמו עריכת משקלים/פעולות). משיכת נתונים תדרוס אותם. האם להמשיך?')){
+      return;
+    }
+  }
+
   try {
     const owner = repo.split('/')[0];
     const repoName = repo.split('/')[1];
@@ -2505,7 +2588,11 @@ async function pullStateFromCloud(silent=false){
       if(st.research) RESEARCH = st.research;
       if(st.sources) SOURCES = st.sources;
       if(st.logs) LOGS = st.logs;
+
+      LOCAL_DIRTY = false; // Reset dirty flag before saving
       saveLocal('base', BASE); saveLocal('mkt', MKT); saveLocal('txns', TXNS);
+      LOCAL_DIRTY = false;
+
       refreshAll();
       if(!silent) toast('✅ סונכרן מצב אחרון מהענן!');
     }
@@ -2514,18 +2601,33 @@ async function pullStateFromCloud(silent=false){
   }
 }
 
-async function pushStateToGitHub(){
-  const token = loadLocal('gh_token', '');
+async function pushStateToGitHub(retries = 3){
+  const token = SESSION_SECRETS.ghToken;
   const repo = loadLocal('gh_repo', '');
   if(!token || !repo) return;
-  try {
-    const owner = repo.split('/')[0];
-    const repoName = repo.split('/')[1];
-    const stateObj = {version:'3.7', base:BASE, mkt:MKT, mpx:MPX, mv:MV, txns:TXNS, research:RESEARCH, sources:SOURCES, logs:LOGS};
-    await ghPutFile(owner, repoName, 'data/state.json', JSON.stringify(stateObj, null, 2), token, 'Auto-update txns in data/state.json');
-    toast('✅ פעולה סונכרנה בהצלחה לענן (GitHub)!');
-  } catch(err) {
-    toast(`⚠️ שגיאה בעדכון GitHub: ${err.message}`);
+
+  const owner = repo.split('/')[0];
+  const repoName = repo.split('/')[1];
+  const stateObj = {schemaVersion:'3.8.0', base:BASE, mkt:MKT, mpx:MPX, mv:MV, txns:TXNS, research:RESEARCH, sources:SOURCES, logs:LOGS};
+  const jsonStr = JSON.stringify(stateObj, null, 2);
+
+  for(let i=0; i<retries; i++){
+    try {
+      await ghPutFile(owner, repoName, 'data/state.json', jsonStr, token, 'Auto-update txns in data/state.json');
+      LOCAL_DIRTY = false;
+      toast('✅ פעולה סונכרנה בהצלחה לענן (GitHub)!');
+      return;
+    } catch(err) {
+      if(err.message.includes('409') || err.message.includes('conflict')) {
+        if(i < retries - 1) {
+          toast(`⚠️ קונפליקט ב-GitHub. מנסה שוב (${i+1}/${retries})...`);
+          await new Promise(r => setTimeout(r, 1500));
+          continue;
+        }
+      }
+      toast(`⚠️ שגיאה בעדכון GitHub: ${err.message}`);
+      return;
+    }
   }
 }
 
@@ -2642,78 +2744,155 @@ $('btnResetCache').addEventListener('click', ()=>{
   location.reload();
 });
 
+function parseRFC4180CSV(text) {
+  const result = [];
+  let row = [];
+  let inQuotes = false;
+  let val = '';
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    const next = text[i+1];
+    if (inQuotes) {
+      if (c === '"' && next === '"') { val += '"'; i++; }
+      else if (c === '"') { inQuotes = false; }
+      else { val += c; }
+    } else {
+      if (c === '"') { inQuotes = true; }
+      else if (c === ',') { row.push(val); val = ''; }
+      else if (c === '\r' && next === '\n') { row.push(val); result.push(row); row = []; val = ''; i++; }
+      else if (c === '\n') { row.push(val); result.push(row); row = []; val = ''; }
+      else { val += c; }
+    }
+  }
+  if (val || row.length > 0) { row.push(val); result.push(row); }
+  return result;
+}
+
 $('yhCsvInput').addEventListener('change', e=>{
   const file = e.target.files[0]; if(!file) return;
   const reader = new FileReader();
   reader.onload = ev => {
-    const lines = ev.target.result.split(/\r?\n/).filter(Boolean);
-    if(lines.length < 2){ toast('הקובץ ריק'); return; }
-    const headers = lines[0].split(',').map(h=>h.replace(/"/g,'').trim().toLowerCase());
-    const symIdx = headers.findIndex(h=>h.includes('symbol'));
-    const qtyIdx = headers.findIndex(h=> (h.includes('quantity') ? true : h.includes('shares')));
-    const priceIdx = headers.findIndex(h=>h.includes('price'));
-    const commIdx = headers.findIndex(h=>h.includes('commission'));
-    const dateIdx = headers.findIndex(h=> (h.includes('trade date') ? true : h.includes('date')));
-    const typeIdx = headers.findIndex(h=> (h.includes('transaction type') ? true : h.includes('type')));
+    let text = ev.target.result;
+    if(text.charCodeAt(0) === 0xFEFF) text = text.slice(1);
+    const parsed = parseRFC4180CSV(text).filter(r => r.length > 1);
+    if(parsed.length < 2){ toast('הקובץ ריק או לא תקין'); return; }
 
-    if(symIdx === -1 || qtyIdx === -1 || priceIdx === -1 || dateIdx === -1 || typeIdx === -1){
-      toast('חסרות עמודות חובה בקובץ (Symbol, Quantity, Price, Date, Type).');
+    const headers = parsed[0].map(h => String(h).trim().toLowerCase());
+    const isTxnHistory = headers.some(h => h.includes('transaction type') || h.includes('type'));
+    const isSnapshot = headers.some(h => h === 'symbol' || h === 'ticker') && !isTxnHistory;
+
+    if(!isTxnHistory && !isSnapshot) {
+      toast('קובץ לא מזוהה. נדרש קובץ אחזקות או פעולות תקין.');
       return;
     }
 
-    const txs = [];
-    for(let i=1; i<lines.length; i++){
-      const cols = lines[i].split(',').map(c=>c.replace(/"/g,'').trim());
-      const t = String(orVal(cols[symIdx],'')).toUpperCase();
-      const type = String(orVal(cols[typeIdx],'')).toUpperCase();
-      const sh = numOrZero(cols[qtyIdx]);
-      const price = numOrZero(cols[priceIdx]);
-      const comm = commIdx !== -1 ? numOrZero(cols[commIdx]) : 0;
-      const date = String(orVal(cols[dateIdx],''));
-      if(t && /^[A-Z.\-]{1,10}$/.test(t) && sh > 0 && (type === 'BUY' || type === 'SELL')){
-        txs.push({t, type, sh, price, comm, date, _idx: lines.length - i});
+    if(isSnapshot){
+      const symIdx = headers.findIndex(h => h === 'symbol' || h === 'ticker');
+      const qtyIdx = headers.findIndex(h => h.includes('quantity') || h.includes('shares'));
+      const costIdx = headers.findIndex(h => h.includes('cost basis') || h.includes('cost'));
+      if(symIdx===-1 || qtyIdx===-1 || costIdx===-1){ toast('חסרות עמודות במצב Snapshot'); return; }
+
+      const newHoldings = {};
+      let count = 0;
+      for(let i=1; i<parsed.length; i++){
+        const row = parsed[i];
+        const t = String(orVal(row[symIdx],'')).trim().toUpperCase();
+        if(!t || !/^[A-Z.\-]{1,10}$/.test(t)) continue;
+        const sh = numOrZero(row[qtyIdx]);
+        const cost = numOrZero(row[costIdx]);
+        if(sh > 0){
+          newHoldings[t] = {sh, cost};
+          count++;
+        }
       }
+
+      if(confirm(`זוהה קובץ אחזקות (Snapshot) עם ${count} נכסים. האם לעדכן נתוני בסיס?`)){
+        if(confirm('האם לאפס גם את הפעולות (TXNS) המקומיות כדי למנוע כפילויות?')){
+          TXNS = [];
+          saveLocal('txns', TXNS);
+        }
+        BASE = {asOf: `Snapshot CSV (${file.name})`, realizedHistorical: BASE.realizedHistorical || 0, holdings: newHoldings};
+        saveLocal('base', BASE);
+        refreshAll();
+        toast(`✅ סונכרנו אחזקות בסיס: ${count} נכסים`);
+      }
+      return;
     }
 
-    txs.sort((a,b) => {
-      const dCmp = a.date.localeCompare(b.date);
-      if(dCmp !== 0) return dCmp;
-      if(a.type !== b.type) return a.type === 'BUY' ? -1 : 1;
-      return a._idx - b._idx;
-    });
+    if(isTxnHistory){
+      const symIdx = headers.findIndex(h=>h.includes('symbol') || h.includes('ticker'));
+      const qtyIdx = headers.findIndex(h=> h.includes('quantity') || h.includes('shares'));
+      const priceIdx = headers.findIndex(h=>h.includes('price'));
+      const commIdx = headers.findIndex(h=>h.includes('commission') || h.includes('fees'));
+      const dateIdx = headers.findIndex(h=> h.includes('trade date') || h.includes('date'));
+      const typeIdx = headers.findIndex(h=> h.includes('transaction type') || h.includes('type'));
 
-    const newHoldings = {};
-    let count = 0;
-    let realized = 0;
-    txs.forEach(tx => {
-      const {t, type, sh, price, comm} = tx;
-      if(!newHoldings[t]) newHoldings[t] = {sh: 0, cost: 0};
-
-      if(type === 'BUY'){
-        newHoldings[t].sh += sh;
-        newHoldings[t].cost += (sh * price) + comm;
-        count++;
-      } else if (type === 'SELL') {
-        const h = newHoldings[t];
-        const sellSh = Math.min(sh, h.sh);
-        const avgCost = h.sh > 0 ? h.cost / h.sh : 0;
-        const gain = (sellSh * price) - (sellSh * avgCost) - comm;
-        realized += gain;
-        h.sh -= sellSh;
-        h.cost -= sellSh * avgCost;
-        if(h.sh < 1e-6){ h.sh = 0; h.cost = 0; }
-        count++;
+      if(symIdx === -1 || qtyIdx === -1 || priceIdx === -1 || dateIdx === -1 || typeIdx === -1){
+        toast('חסרות עמודות חובה בקובץ פעולות.');
+        return;
       }
-    });
 
-    if(count > 0){
-      BASE = {asOf: `Yahoo CSV (${file.name})`, realizedHistorical: realized, holdings: newHoldings};
-      saveLocal('base', BASE);
-      refreshAll();
-      addLog('סוכן Yahoo Sync', 'ok', `עובדו ${count} פעולות מקובץ ${file.name}.`);
-      toast(`✅ סונכרנו אחזקות מחשבון Yahoo Finance (עובדו ${count} פעולות)!`);
-    } else {
-      toast('לא נמצאו פעולות קניה/מכירה תקינות בקובץ.');
+      const txs = [];
+      for(let i=1; i<parsed.length; i++){
+        const cols = parsed[i];
+        const t = String(orVal(cols[symIdx],'')).trim().toUpperCase();
+        const type = String(orVal(cols[typeIdx],'')).trim().toUpperCase();
+        const sh = numOrZero(cols[qtyIdx]);
+        const price = numOrZero(cols[priceIdx]);
+        const comm = commIdx !== -1 ? numOrZero(cols[commIdx]) : 0;
+        const date = String(orVal(cols[dateIdx],'')).trim();
+        if(t && /^[A-Z.\-]{1,10}$/.test(t) && sh > 0 && (type === 'BUY' || type === 'SELL' || type.includes('BUY') || type.includes('SELL'))){
+          const cleanType = type.includes('BUY') ? 'BUY' : 'SELL';
+          txs.push({t, type: cleanType, sh, price, comm, date, _idx: parsed.length - i});
+        }
+      }
+
+      txs.sort((a,b) => {
+        const dCmp = a.date.localeCompare(b.date);
+        if(dCmp !== 0) return dCmp;
+        if(a.type !== b.type) return a.type === 'BUY' ? -1 : 1;
+        return a._idx - b._idx;
+      });
+
+      const newHoldings = {};
+      let count = 0;
+      let realized = 0;
+      txs.forEach(tx => {
+        const {t, type, sh, price, comm} = tx;
+        if(!newHoldings[t]) newHoldings[t] = {sh: 0, cost: 0};
+
+        if(type === 'BUY'){
+          newHoldings[t].sh += sh;
+          newHoldings[t].cost += (sh * price) + comm;
+          count++;
+        } else if (type === 'SELL') {
+          const h = newHoldings[t];
+          const sellSh = Math.min(sh, h.sh);
+          const avgCost = h.sh > 0 ? h.cost / h.sh : 0;
+          const gain = (sellSh * price) - (sellSh * avgCost) - comm;
+          realized += gain;
+          h.sh -= sellSh;
+          h.cost -= sellSh * avgCost;
+          if(h.sh < 1e-6){ h.sh = 0; h.cost = 0; }
+          count++;
+        }
+      });
+
+      if(count > 0){
+        if(confirm(`זוהה קובץ היסטוריית פעולות המכיל ${count} תנועות תקינות. לעבד את היסטוריית הפעולות כבסיס חדש?`)){
+           if(confirm('האם לאפס גם את הפעולות (TXNS) המקומיות כדי למנוע כפילויות?')){
+             TXNS = [];
+             saveLocal('txns', TXNS);
+           }
+           BASE = {asOf: `CSV פעולות (${file.name})`, realizedHistorical: realized, holdings: newHoldings};
+           saveLocal('base', BASE);
+           refreshAll();
+           addLog('סוכן Yahoo Sync', 'ok', `עובדו ${count} פעולות מקובץ ${file.name}.`);
+           toast(`✅ עובדו בהצלחה ${count} פעולות!`);
+        }
+      } else {
+        toast('לא נמצאו פעולות קניה/מכירה תקינות בקובץ.');
+      }
     }
   };
   reader.readAsText(file);
@@ -2735,7 +2914,13 @@ $('sBuy').addEventListener('click',()=>setSide('buy'));$('sSell').addEventListen
 $('txLast').addEventListener('click',()=>{ const p=priceOf(String(orVal($('txTicker').value,'')).trim().toUpperCase()); if(p){$('txPrice').value=p; preview();} });$('txForm').addEventListener('submit', async e=>{
   e.preventDefault();
   const v = formVals(); const err = $('txErr');
-  if(!v.date || !v.t || !(v.qty>0) || !(v.price>0)){ err.textContent='נא למלא תאריך, סימול, כמות ומחיר תקינים.'; return; }
+
+  const validationError = validateTransactionInput(v, txSide, HOLD);
+  if(validationError){
+    err.textContent = validationError;
+    return;
+  }
+
   TXNS.push({id:'tx_'+Date.now(), date:v.date, t:v.t, side:txSide, qty:v.qty, price:v.price, fee:v.fee, note:v.note, createdAt:new Date().toISOString()});
   saveLocal('txns', TXNS);
   $('txQty').value='';$('txNote').value='';
@@ -2754,7 +2939,42 @@ $('tbody').addEventListener('click', e=>{
   }
 });
 
+function runUnitTests(){
+  console.log("Running self-tests (QA-01 to QA-03)...");
+  let passed = 0, failed = 0;
+
+  function assertEq(name, a, b){
+    if(a !== b) { console.error(`[FAIL] ${name}: expected ${b}, got ${a}`); failed++; }
+    else { console.log(`[PASS] ${name}`); passed++; }
+  }
+
+  // QA-01: computeExactSMA
+  assertEq('SMA N-1 (null)', computeExactSMA([10,20], 3), null);
+  assertEq('SMA N', computeExactSMA([10,20,30], 3), 20);
+  assertEq('SMA N+1', computeExactSMA([10,20,30,40], 3), 30);
+
+  // QA-02: validateTransactionInput
+  const mockHoldings = { 'AAPL': {sh: 10, cost: 1500} };
+  assertEq('Tx Sell OK', validateTransactionInput({date:'2023', t:'AAPL', qty:5, price:150, fee:0}, 'sell', mockHoldings), null);
+  assertEq('Tx Sell Oversell', validateTransactionInput({date:'2023', t:'AAPL', qty:11, price:150, fee:0}, 'sell', mockHoldings) !== null, true);
+
+  // QA-03: RFC-4180 CSV
+  const csvText = 'Symbol,Type,Shares,Price\n"AAPL,Inc",BUY,10,150.5\nMSFT,SELL,5,200';
+  const parsed = parseRFC4180CSV(csvText);
+  assertEq('CSV Parsed rows', parsed.length, 3);
+  assertEq('CSV Quoted Comma', parsed[1][0], 'AAPL,Inc');
+
+  console.log(`Self-tests complete: ${passed} passed, ${failed} failed.`);
+  return failed === 0;
+}
+
 (function init(){
+  if(localStorage.getItem('gp38_v39_live_sync') !== 'true'){
+    localStorage.removeItem('gp38_mkt');
+    localStorage.removeItem('gp38_base');
+    localStorage.setItem('gp38_v39_live_sync', 'true');
+  }
+
   if(localStorage.getItem('gp37_migrated') !== 'true'){
     for(let i=0; i<localStorage.length; i++){
       const k = localStorage.key(i);
@@ -2767,13 +2987,32 @@ $('tbody').addEventListener('click', e=>{
     MKT = MKT_EMBED;
     localStorage.setItem('gp37_migrated', 'true');
   }
+
   const d=new Date(); $('txDate').value = new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10);
-  const savedYt = loadLocal('yt_key', null); if(savedYt) $('cfgYtKey').value = savedYt;
-  const savedGem = loadLocal('gem_key', null); if(savedGem) $('cfgGemKey').value = savedGem;
-  const savedTok = loadLocal('gh_token', null); if(savedTok) $('cfgGhToken').value = savedTok;
-  showTab('agents');
-  refreshAll();
-  pullStateFromCloud(true);
+  $('cfgYtKey').value = SESSION_SECRETS.ytKey || '';
+  $('cfgGemKey').value = SESSION_SECRETS.gemKey || '';
+  $('cfgGhToken').value = SESSION_SECRETS.ghToken || '';
+  showTab('overview');
+
+  fetch('./data/state.json?t=' + Date.now(), {cache: "no-store"})
+    .then(r => r.json())
+    .then(st => {
+      if(st.base) BASE = st.base;
+      if(st.mkt) MKT = st.mkt;
+      if(st.txns) TXNS = st.txns;
+      if(st.mpx) MPX = st.mpx;
+      if(st.mv) MV = st.mv;
+      if(st.research) RESEARCH = st.research;
+      if(st.sources) SOURCES = st.sources;
+      if(st.logs) LOGS = st.logs;
+      refreshAll();
+      runLiveYahooMarketAgent();
+    })
+    .catch(err => {
+      console.error("Failed to fetch state.json on init", err);
+      refreshAll();
+      runLiveYahooMarketAgent();
+    });
 })();
 </script>
 

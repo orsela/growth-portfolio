@@ -53,6 +53,12 @@ def safe_gemini_parse(text):
         print(f"Gemini parse error: {e}")
         return None
 
+def compute_exact_sma(closes, window):
+    valid_closes = [c for c in closes if isinstance(c, (int, float)) and c > 0 and c == c]
+    if len(valid_closes) < window:
+        return None
+    return round(sum(valid_closes[-window:]) / window, 2)
+
 def main():
     try:
         text_content = STATE_PATH.read_text('utf-8')
@@ -66,32 +72,52 @@ def main():
     # Do not overwrite quotes to protect manual static quotes provided by user
     quotes_frozen = {k: v for k, v in mkt.get('quotes', {}).items()}
 
+    success_count = 0
+
     # Run market agent
+    import requests
+    import pandas as pd
+    session = requests.Session()
+    session.headers.update({'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'})
     for t in CORE:
         try:
-            h = yf.Ticker(t).history(period='1y', interval='1d', auto_adjust=False)
+            ticker_obj = yf.Ticker(t, session=session)
+            h = ticker_obj.history(period='1y', interval='1d', auto_adjust=False)
+
+            if h.empty:
+                # Fallback to yf.download if history() returns empty
+                h = yf.download(t, period="1y", interval="1d", group_by="ticker", threads=False, session=session)
+                if isinstance(h.columns, pd.MultiIndex):
+                     h.columns = h.columns.droplevel(0)
+
             c = h['Close'].dropna().tolist()
-            if len(c) >= 20:
-                if t not in quotes_frozen:
-                    mkt['quotes'][t] = round(float(c[-1]), 2)
-                s50 = round(sum(c[-50:])/min(50,len(c)), 2)
-                s200 = round(sum(c[-200:])/min(200,len(c)), 2)
 
-                # Bounded SMA-150 calculation
-                if len(c) >= 150:
-                    s150 = round(sum(c[-150:])/150.0, 2)
-                else:
-                    # Fallback to projected 150-day average using 50 and 200 day trends
-                    s150 = round(s50 + (s200-s50)*2/3, 2)
+            if not c or c[-1] <= 0:
+                continue
 
-                mkt['ma'][t] = [s50, s200, s150]
+            if t not in quotes_frozen:
+                mkt['quotes'][t] = round(float(c[-1]), 2)
+
+            s50 = compute_exact_sma(c, 50)
+            s200 = compute_exact_sma(c, 200)
+            s150 = compute_exact_sma(c, 150)
+
+            mkt['ma'][t] = [s50, s200, s150]
+            success_count += 1
         except Exception as e:
             print(f"YF error for {t}: {e}")
 
     # Restore frozen quotes (to not overwrite)
     mkt['quotes'].update(quotes_frozen)
 
-    mkt['asOf'] = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+    now_str = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+    mkt['lastAttemptAt'] = now_str
+    if success_count > 0:
+        mkt['asOf'] = now_str
+        mkt['lastSuccessAt'] = now_str
+        mkt['maAsOf'] = now_str.split('T')[0]
+
+    st['version'] = '3.9-live'
 
     # Run youtube agent
     extract_youtube_transcripts(st)
