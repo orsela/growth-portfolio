@@ -59,15 +59,23 @@ def compute_exact_sma(closes, window):
         return None
     return round(sum(valid_closes[-window:]) / window, 2)
 
-def main():
+def load_state(path):
     try:
-        text_content = STATE_PATH.read_text('utf-8')
-        st = safe_gemini_parse(text_content) if STATE_PATH.exists() and text_content else {}
+        text_content = path.read_text('utf-8')
+        st = safe_gemini_parse(text_content) if path.exists() and text_content else {}
     except Exception as e:
         print(f"Error loading state: {e}")
         st = {}
 
-    mkt = st.setdefault('mkt', {'quotes':{}, 'ma':{}, 'targets':{}})
+    if not isinstance(st, dict):
+        st = {}
+
+    st.setdefault('mkt', {'quotes':{}, 'ma':{}, 'targets':{}})
+    return st
+
+def main():
+    st = load_state(STATE_PATH)
+    mkt = st['mkt']
 
     # Do not overwrite quotes to protect manual static quotes provided by user
     quotes_frozen = {k: v for k, v in mkt.get('quotes', {}).items()}
