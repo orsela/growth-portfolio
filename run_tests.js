@@ -33,6 +33,8 @@ testContext.eval(`
   function px(v) { return '$' + v.toFixed(2); }
 
   // Re-declare the specific functions we want to test to avoid the UI baggage
+  ${scriptContent.match(/const safeUrl = [\s\S]*?\};\n/)[0]}
+
   ${scriptContent.match(/function computeExactSMA[\s\S]*?\n\}/)[0]}
 
   ${scriptContent.match(/function validateTransactionInput[\s\S]*?\n\}/)[0]}
