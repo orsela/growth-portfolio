@@ -3,11 +3,10 @@ const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 
 const html = fs.readFileSync('./index.html', 'utf8');
-const dom = new JSDOM(html, { runScripts: "dangerously" });
 
-// Since the script runs immediately (including an init loop) it might complain about localStorage or fetch.
-// Let's grab the specific function definitions and test them outside the full dom run,
-// or define some mocks in the DOM before we load the scripts.
+// We should NOT run the scripts when loading the HTML just to extract them,
+// otherwise the first JSDOM instance throws the opaque origin error
+const dom = new JSDOM(html);
 
 const scriptContent = Array.from(dom.window.document.querySelectorAll('script'))
   .map(s => s.textContent)
@@ -38,6 +37,8 @@ testContext.eval(`
   ${scriptContent.match(/function validateTransactionInput[\s\S]*?\n\}/)[0]}
 
   ${scriptContent.match(/function parseRFC4180CSV[\s\S]*?\n\}/)[0]}
+
+  ${scriptContent.match(/function toBase64Utf8[\s\S]*?\n\}/)[0]}
 
   ${scriptContent.match(/function runUnitTests[\s\S]*?\n\}/)[0]}
 
