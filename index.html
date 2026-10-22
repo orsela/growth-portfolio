@@ -1412,6 +1412,13 @@ const px = v => (v===null || v===undefined || Number.isNaN(v)) ? '—' : (v>=100
 const qfmt = v => (+v).toLocaleString('en-US',{maximumFractionDigits:4});
 const cssv = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 const esc = s => String(orVal(s,'')).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const safeUrl = u => {
+  try {
+    const url = new URL(u, window.location.href);
+    if (['http:', 'https:'].includes(url.protocol)) return url.href;
+    return '#';
+  } catch(e) { return '#'; }
+};
 const STATUS = {zone:'באזור כניסה', wait:'מתוחה – להמתין', under:'מתחת לממוצע', trim:'ליד היעד – מימוש חלקי', na:'אין נתונים'};
 
 function toast(msg){
@@ -2154,7 +2161,7 @@ function renderMV(){
       <td>${first?`<span class="tk">${esc(r.t)}</span>`:''}</td>
       <td><span class="pill q" style="font-size:11px">${esc(r.source)}</span></td>
       <td class="num dim">${esc(dStr.slice(5).split('-').reverse().join('.'))}</td>
-      <td class="vid"><a href="${esc(r.url)}" target="_blank" rel="noopener noreferrer">🔗 ${esc(r.title)}</a></td>
+      <td class="vid"><a href="${esc(safeUrl(r.url))}" target="_blank" rel="noopener noreferrer">🔗 ${esc(r.title)}</a></td>
       <td>${lv(r.breakout)}</td><td>${lv(r.target)}</td><td>${lv(r.warning)}</td>
       <td class="num">${p!=null?px(p):'—'}</td>
       <td>${mvState(p, r.breakout, r.target, r.warning)}</td>
@@ -2963,6 +2970,11 @@ function runUnitTests(){
   const parsed = parseRFC4180CSV(csvText);
   assertEq('CSV Parsed rows', parsed.length, 3);
   assertEq('CSV Quoted Comma', parsed[1][0], 'AAPL,Inc');
+
+  // QA-04: safeUrl
+  assertEq('Safe URL (http)', safeUrl('http://example.com/').startsWith('http://example.com/'), true);
+  assertEq('Safe URL (javascript)', safeUrl('javascript:alert(1)'), '#');
+  assertEq('Safe URL (data)', safeUrl('data:text/html,' + decodeURIComponent('%3Cscript%3Ealert(1)%3C/script%3E')), '#');
 
   console.log(`Self-tests complete: ${passed} passed, ${failed} failed.`);
   return failed === 0;
