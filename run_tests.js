@@ -3,7 +3,7 @@ const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 
 const html = fs.readFileSync('./index.html', 'utf8');
-const dom = new JSDOM(html, { runScripts: "dangerously" });
+const dom = new JSDOM(html, { runScripts: "dangerously", url: "http://localhost/" });
 
 // Since the script runs immediately (including an init loop) it might complain about localStorage or fetch.
 // Let's grab the specific function definitions and test them outside the full dom run,

@@ -289,11 +289,11 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">
             <div class="field">
               <label>YouTube Data API Key</label>
-              <input type="text" id="cfgYtKey" value="AIzaSyD9Gkrmrmiz_lZ38gTVw7KhQheYvTOk58k">
+              <input type="text" id="cfgYtKey" placeholder="Paste API key for current session...">
             </div>
             <div class="field">
               <label>Google Gemini API Key</label>
-              <input type="text" id="cfgGemKey" value="AIzaSyAB9zXJskweDSK0JvBJuC59zTPnd2XSZC8">
+              <input type="text" id="cfgGemKey" placeholder="Paste API key for current session...">
             </div>
           </div>
           <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center">
@@ -1402,6 +1402,11 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
 <div class="toast" id="toast" hidden="">⚠️ נא להדביק קודם את ה-GitHub Token בתיבה (לחץ על כפתור 1 כדי ליצור אותו).</div>
 
 <script>
+const SESSION_SECRETS = {
+  ghToken: '',
+  ytKey: '',
+  gemKey: ''
+};
 const $ = id => document.getElementById(id);
 function orVal(a, b){ return (a !== undefined && a !== null && a !== '' && !Number.isNaN(a)) ? a : b; }
 function numOrZero(v){ const n = parseFloat(v); return Number.isNaN(n) ? 0 : n; }
@@ -2734,10 +2739,10 @@ $('btnMichaScan').addEventListener('click', runLiveMichaYouTubeAgent);$('btnMast
   toast(`✅ שעת ההרצה היומית נקבעה ל-${t} לכל הסוכנים!`);
 });
 $('btnSaveKeys').addEventListener('click', ()=>{
-  saveLocal('yt_key', $('cfgYtKey').value.trim());
-  saveLocal('gem_key', $('cfgGemKey').value.trim());
-  saveLocal('gh_token', $('cfgGhToken').value.trim());
-  toast('✅ ההגדרות ומפתחות ה-API נשמרו!');
+  SESSION_SECRETS.ytKey = $('cfgYtKey').value.trim();
+  SESSION_SECRETS.gemKey = $('cfgGemKey').value.trim();
+  SESSION_SECRETS.ghToken = $('cfgGhToken').value.trim();
+  toast('✅ ההגדרות ומפתחות ה-API נשמרו לזמן הריצה!');
 });
 $('btnResetCache').addEventListener('click', ()=>{
   localStorage.clear();
