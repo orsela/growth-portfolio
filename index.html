@@ -1520,6 +1520,7 @@ function saveLocal(key, val){
   }catch(_){}
 }
 
+let SESSION_SECRETS = { ghToken: loadLocal('gh_token', ''), ytKey: loadLocal('yt_key', ''), gemKey: loadLocal('gem_key', '') };
 let ENTRY = loadLocal('entry', {TSM:'zone', AVGO:'reclaim', ALAB:'zone', LLY:'zone', MELI:'reclaim', AMZN:'zone', MA:'zone', DASH:'reclaim', SPOT:'reclaim'});
 let SOURCES = loadLocal('sources', [
   {id:'micha_stocks', name:'מיכה סטוקס', type:'youtube', identifier:'@Micha.Stocks', prompt:'חלץ כל טיקר שהוזכר, מחיר פריצה, מחיר יעד, קו אזהרה וסיכום תמציתי בעברית עד 20 מילה.', enabled:true}
@@ -1675,6 +1676,7 @@ async function autoDeployToGitHub(){
     const userData = await userRes.json();
     const owner = userData.login;
     saveLocal('gh_token', token);
+    SESSION_SECRETS.ghToken = token;
     saveLocal('gh_repo', `${owner}/${repoName}`);
 
     setLiveStatus(`🚀 שלב 2/5: מקים את הריפוזיטורי ${owner}/${repoName}...`);
@@ -2737,6 +2739,9 @@ $('btnSaveKeys').addEventListener('click', ()=>{
   saveLocal('yt_key', $('cfgYtKey').value.trim());
   saveLocal('gem_key', $('cfgGemKey').value.trim());
   saveLocal('gh_token', $('cfgGhToken').value.trim());
+  SESSION_SECRETS.ytKey = $('cfgYtKey').value.trim();
+  SESSION_SECRETS.gemKey = $('cfgGemKey').value.trim();
+  SESSION_SECRETS.ghToken = $('cfgGhToken').value.trim();
   toast('✅ ההגדרות ומפתחות ה-API נשמרו!');
 });
 $('btnResetCache').addEventListener('click', ()=>{
