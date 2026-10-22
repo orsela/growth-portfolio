@@ -53,8 +53,7 @@ def safe_gemini_parse(text):
         print(f"Gemini parse error: {e}")
         return None
 
-def compute_exact_sma(closes, window):
-    valid_closes = [c for c in closes if isinstance(c, (int, float)) and c > 0 and c == c]
+def compute_exact_sma(valid_closes, window):
     if len(valid_closes) < window:
         return None
     return round(sum(valid_closes[-window:]) / window, 2)
@@ -86,9 +85,10 @@ def main():
             if t not in quotes_frozen:
                 mkt['quotes'][t] = round(float(c[-1]), 2)
 
-            s50 = compute_exact_sma(c, 50)
-            s200 = compute_exact_sma(c, 200)
-            s150 = compute_exact_sma(c, 150)
+            valid_closes = [v for v in c if isinstance(v, (int, float)) and v > 0 and v == v]
+            s50 = compute_exact_sma(valid_closes, 50)
+            s200 = compute_exact_sma(valid_closes, 200)
+            s150 = compute_exact_sma(valid_closes, 150)
 
             mkt['ma'][t] = [s50, s200, s150]
             success_count += 1
