@@ -19,22 +19,67 @@ def extract_youtube_transcripts(st):
         sources = st.get('sources', [])
         micha_src = next((s for s in sources if s.get('identifier') == '@Micha.Stocks' and s.get('enabled')), None)
         if not micha_src:
-            return
+            # Fallback if sources not in state
+            micha_src = {'name': 'מיכה סטוקס', 'identifier': '@Micha.Stocks', 'prompt': 'חלץ כל טיקר שהוזכר, מחיר פריצה, מחיר יעד, קו אזהרה וסיכום תמציתי בעברית עד 20 מילה.'}
 
         # Simplified simulation of the extraction flow with try/except
         q = micha_src['identifier'].replace('@', '')
         ch_res = requests.get(f"https://www.googleapis.com/youtube/v3/search?part=snippet&q={q}&type=channel&maxResults=1&key={yt_key}").json()
         channel_id = ch_res.get('items', [{}])[0].get('id', {}).get('channelId')
 
+        gemini_key = os.environ.get('GEMINI_API_KEY')
+        if not gemini_key:
+            return
+
+        import google.generativeai as genai
+        genai.configure(api_key=gemini_key)
+        model = genai.GenerativeModel('gemini-2.5-flash')
+
         if channel_id:
             v_res = requests.get(f"https://www.googleapis.com/youtube/v3/search?part=snippet,id&channelId={channel_id}&order=date&maxResults=2&type=video&key={yt_key}").json()
+
+            # Init mv array if not exists
+            if 'mv' not in st:
+                st['mv'] = []
+
+            # Keep track of existing vids
+            existing_vids = {v.get('vid') for v in st.get('mv', []) if v.get('vid')}
+
             for item in v_res.get('items', []):
                 vid = item.get('id', {}).get('videoId')
-                if vid:
+                if vid and vid not in existing_vids:
                     try:
-                        transcript = YouTubeTranscriptApi.get_transcript(vid, languages=['he', 'en'])
-                        # Just a placeholder for actual extraction logic which is handled in frontend
-                        pass
+                        transcript_list = YouTubeTranscriptApi.get_transcript(vid, languages=['he', 'en'])
+                        full_text = " ".join([t['text'] for t in transcript_list])
+
+                        prompt = f"""
+{micha_src.get('prompt', 'חלץ כל טיקר שהוזכר, מחיר פריצה, מחיר יעד, קו אזהרה וסיכום תמציתי בעברית עד 20 מילה.')}
+החזר אך ורק מערך JSON תקין שבו כל איבר הוא אובייקט עם השדות:
+"t" (string: הטיקר, למשל "PLTR"),
+"breakout" (number או null),
+"target" (number או null),
+"warning" (number או null),
+"summary" (string).
+אין להוסיף טקסט מעבר ל-JSON.
+הנה התמלול:
+{full_text}
+"""
+                        response = model.generate_content(prompt)
+                        parsed = safe_gemini_parse(response.text)
+
+                        if isinstance(parsed, list):
+                            snippet = item.get('snippet', {})
+
+                            # Prepend the new video to mv array
+                            new_mv = {
+                                "vid": vid,
+                                "source": micha_src.get('name', 'מיכה סטוקס'),
+                                "date": snippet.get('publishedAt', '')[:10],
+                                "title": snippet.get('title', ''),
+                                "url": f"https://www.youtube.com/watch?v={vid}",
+                                "rows": parsed
+                            }
+                            st['mv'].insert(0, new_mv)
                     except Exception as e:
                         print(f"Transcript error for {vid}: {e}")
     except Exception as e:
@@ -44,10 +89,20 @@ def safe_gemini_parse(text):
     try:
         clean = text.strip()
         clean = clean.replace('```json', '').replace('```', '').strip()
-        first = clean.find('{')
-        last = clean.rfind('}')
-        if first != -1 and last > first:
-            clean = clean[first:last+1]
+        # Find either array or object
+        first_obj = clean.find('{')
+        last_obj = clean.rfind('}')
+        first_arr = clean.find('[')
+        last_arr = clean.rfind(']')
+
+        # Determine if it's an array or object based on first occurrence
+        if first_arr != -1 and (first_obj == -1 or first_arr < first_obj):
+            if last_arr > first_arr:
+                clean = clean[first_arr:last_arr+1]
+        elif first_obj != -1:
+            if last_obj > first_obj:
+                clean = clean[first_obj:last_obj+1]
+
         return json.loads(clean)
     except Exception as e:
         print(f"Gemini parse error: {e}")

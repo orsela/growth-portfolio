@@ -51,7 +51,7 @@
     }
   },
   "mkt": {
-    "asOf": "2026-10-21T21:56:45Z",
+    "asOf": "2026-10-22T07:44:26Z",
     "session": "close",
     "maAsOf": "2026-10-09",
     "quotes": {
@@ -294,8 +294,8 @@
         "Buy"
       ]
     },
-    "lastAttemptAt": "2026-10-21T21:56:45Z",
-    "lastSuccessAt": "2026-10-21T21:56:45Z"
+    "lastAttemptAt": "2026-10-22T07:44:26Z",
+    "lastSuccessAt": "2026-10-22T07:44:26Z"
   },
   "mpx": {
     "asOf": "2026-10-09",
