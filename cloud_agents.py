@@ -1,4 +1,5 @@
 import json, os, yfinance as yf
+import concurrent.futures
 from datetime import datetime, timezone
 from pathlib import Path
 STATE_PATH = Path('data/state.json')
@@ -28,7 +29,8 @@ def extract_youtube_transcripts(st):
 
         if channel_id:
             v_res = requests.get(f"https://www.googleapis.com/youtube/v3/search?part=snippet,id&channelId={channel_id}&order=date&maxResults=2&type=video&key={yt_key}").json()
-            for item in v_res.get('items', []):
+
+            def fetch_transcript(item):
                 vid = item.get('id', {}).get('videoId')
                 if vid:
                     try:
@@ -37,6 +39,9 @@ def extract_youtube_transcripts(st):
                         pass
                     except Exception as e:
                         print(f"Transcript error for {vid}: {e}")
+
+            with concurrent.futures.ThreadPoolExecutor() as executor:
+                list(executor.map(fetch_transcript, v_res.get('items', [])))
     except Exception as e:
         print(f"YouTube Agent Error: {e}")
 
