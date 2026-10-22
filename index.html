@@ -1656,6 +1656,7 @@ function buildCloudAgentsPyContent(){
 }
 
 async function autoDeployToGitHub(){
+  const WORKFLOW_PATH = '.github/workflows/orchestrator.yml';
   const token = String(orVal($('cfgGhToken').value, '')).trim();
   const repoName = String(orVal($('cfgRepoName').value, 'growth-portfolio')).trim();
   const stTxt = $('deployStatusTxt');
@@ -1693,7 +1694,7 @@ async function autoDeployToGitHub(){
     setLiveStatus('🚀 שלב 4/5: מעלה את הדשבורד index.html ואת סוכן התזמון orchestrator.yml...');
     const fullHtml = '<!doctype html>\n' + document.documentElement.outerHTML;
     await ghPutFile(owner, repoName, 'index.html', fullHtml, token, 'Deploy index.html dashboard');
-    await ghPutFile(owner, repoName, '.github/workflows/orchestrator.yml', buildOrchestratorYmlContent(), token, 'Add GitHub Actions orchestrator');
+    await ghPutFile(owner, repoName, WORKFLOW_PATH, buildOrchestratorYmlContent(), token, 'Add GitHub Actions orchestrator');
 
     setLiveStatus('🚀 שלב 5/5: מפעיל את האתר החי שלך ב-GitHub Pages...');
     const pagesRes = await fetch(`https://api.github.com/repos/${owner}/${repoName}/pages`, {
