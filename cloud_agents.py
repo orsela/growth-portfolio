@@ -75,25 +75,34 @@ def main():
     success_count = 0
 
     # Run market agent
-    for t in CORE:
-        try:
-            h = yf.Ticker(t).history(period='1y', interval='1d', auto_adjust=False)
-            c = h['Close'].dropna().tolist()
+    try:
+        df = yf.download(CORE, period='1y', interval='1d', auto_adjust=False, progress=False)
+        closes = df['Close'] if 'Close' in df else None
+    except Exception as e:
+        print(f"YF batch download error: {e}")
+        closes = None
 
-            if not c or c[-1] <= 0:
-                continue
+    if closes is not None:
+        for t in CORE:
+            try:
+                if t not in closes.columns:
+                    continue
+                c = closes[t].dropna().tolist()
 
-            if t not in quotes_frozen:
-                mkt['quotes'][t] = round(float(c[-1]), 2)
+                if not c or c[-1] <= 0:
+                    continue
 
-            s50 = compute_exact_sma(c, 50)
-            s200 = compute_exact_sma(c, 200)
-            s150 = compute_exact_sma(c, 150)
+                if t not in quotes_frozen:
+                    mkt['quotes'][t] = round(float(c[-1]), 2)
 
-            mkt['ma'][t] = [s50, s200, s150]
-            success_count += 1
-        except Exception as e:
-            print(f"YF error for {t}: {e}")
+                s50 = compute_exact_sma(c, 50)
+                s200 = compute_exact_sma(c, 200)
+                s150 = compute_exact_sma(c, 150)
+
+                mkt['ma'][t] = [s50, s200, s150]
+                success_count += 1
+            except Exception as e:
+                print(f"YF error for {t}: {e}")
 
     # Restore frozen quotes (to not overwrite)
     mkt['quotes'].update(quotes_frozen)
