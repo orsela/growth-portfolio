@@ -295,6 +295,10 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
               <label>Google Gemini API Key</label>
               <input type="text" id="cfgGemKey" value="AIzaSyAB9zXJskweDSK0JvBJuC59zTPnd2XSZC8">
             </div>
+            <div class="field">
+              <label>Google Gemini Model</label>
+              <input type="text" id="cfgGemModel" value="gemini-2.5-flash">
+            </div>
           </div>
           <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center">
             <button type="button" class="mini" id="btnResetCache">איפוס מטמון מקומי</button>
@@ -599,6 +603,16 @@ footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);paddin
       <div class="stat"><div class="eyebrow">עלות</div><div class="v num" id="sCost">$57,495</div></div>
       <div class="stat"><div class="eyebrow">רווח לא ממומש</div><div class="v num pos" id="sUnrl">+$7,336 (+12.8%)</div></div>
       <div class="stat"><div class="eyebrow">חשיפה ל-AI היום</div><div class="v num" id="sAi">70.9%</div></div>
+    </div>
+
+    <div class="panel" style="border-inline-start:4px solid var(--accent)">
+      <div class="topbar">
+        <h3>📰 פיד מידע רץ ועדכונים מהמקורות (Live Feed)</h3>
+        <span class="dim" style="font-size:13px">מתעדכן מחדשות התיק ומיכה סטוקס</span>
+      </div>
+      <div id="overviewNewsTicker" style="margin-top:10px;display:flex;flex-direction:column;gap:8px;max-height:220px;overflow-y:auto">
+        <span class="dim">טוען עדכונים אחרונים מהמקורות...</span>
+      </div>
     </div>
 
     <section>
@@ -2245,9 +2259,66 @@ function renderLogs(){
   `).join('');
 }
 
+function renderOverviewNews() {
+  const tickerEl = $('overviewNewsTicker');
+  if (!tickerEl) return;
+  const portfolioTickers = new Set(Object.keys(HOLD));
+  let items = [];
+
+  if (MICHA && MICHA.items) {
+    MICHA.items.forEach(item => {
+      if (portfolioTickers.has(item.t)) {
+        items.push({
+          dateStr: item.date,
+          t: item.t,
+          source: 'מיכה סטוקס',
+          desc: item.say || item.levelLabel
+        });
+      }
+    });
+  }
+
+  if (MV && Array.isArray(MV)) {
+    MV.forEach(vid => {
+      if (vid.rows) {
+        vid.rows.forEach(r => {
+          if (portfolioTickers.has(r.t)) {
+            items.push({
+              dateStr: vid.date,
+              t: r.t,
+              source: vid.source,
+              link: vid.url,
+              desc: r.summary
+            });
+          }
+        });
+      }
+    });
+  }
+
+  items.sort((a,b) => b.dateStr.localeCompare(a.dateStr));
+  items = items.slice(0, 5);
+
+  if (items.length === 0) {
+    tickerEl.innerHTML = '<span class="dim">אין עדכונים רלוונטיים למניות התיק.</span>';
+    return;
+  }
+
+  tickerEl.innerHTML = items.map(item => {
+    let content = `<div style="background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 12px;display:flex;flex-direction:column;gap:4px">
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px">
+        <span style="font-weight:600"><span class="badge" style="margin-inline-end:6px">${item.t}</span>${item.source}</span>
+        <span class="dim num">${item.dateStr}</span>
+      </div>
+      <div style="font-size:14px">${item.link ? `<a href="${item.link}" target="_blank" rel="noopener noreferrer">${item.desc}</a>` : item.desc}</div>
+    </div>`;
+    return content;
+  }).join('');
+}
+
 function refreshAll(){
   computeHoldings(); computeLevels(); buildRows();
-  renderStats(); buildTable(); calc(); renderLevels(); renderMicha(); renderMV(); renderResearch(); renderTx(); renderAgentsTab(); renderLogs();
+  renderStats(); renderOverviewNews(); buildTable(); calc(); renderLevels(); renderMicha(); renderMV(); renderResearch(); renderTx(); renderAgentsTab(); renderLogs();
   $('tickers').innerHTML = Object.keys(LVMAP).map(t=>`<option value="${t}"></option>`).join('');
   preview();
 }
@@ -2340,27 +2411,24 @@ async function runLiveYahooMarketAgent(){
 }
 
 async function callGeminiBrowser(prompt, gemKey){
-  const models = ['gemini-2.5-flash', 'gemini-2.0-flash'];
-  let lastErr = null;
-  for(const m of models){
-    try{
-      const res = await fetchWithTimeout(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${encodeURIComponent(gemKey)}`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          contents: [{parts: [{text: prompt}]}],
-          generationConfig: {temperature: 0.2}
-        })
-      }, 15000);
-      const data = await res.json();
-      if(data.error) throw new Error(data.error.message);
-      const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-      if(text) return safeParseJson(text);
-    }catch(e){
-      lastErr = e;
-    }
+  const model = String(orVal($('cfgGemModel').value, 'gemini-2.5-flash')).trim();
+  try{
+    const res = await fetchWithTimeout(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${encodeURIComponent(gemKey)}`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        contents: [{parts: [{text: prompt}]}],
+        generationConfig: {temperature: 0.2}
+      })
+    }, 15000);
+    const data = await res.json();
+    if(data.error) throw new Error(data.error.message);
+    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+    if(text) return safeParseJson(text);
+  }catch(e){
+    throw new Error('קריאה ל-Gemini נכשלה: ' + e.message);
   }
-  throw (lastErr ? lastErr : new Error('קריאה ל-Gemini נכשלה'));
+  throw new Error('קריאה ל-Gemini נכשלה: לא התקבל טקסט');
 }
 
 async function runLiveDeepResearch(ticker){
@@ -2736,6 +2804,7 @@ $('btnMichaScan').addEventListener('click', runLiveMichaYouTubeAgent);$('btnMast
 $('btnSaveKeys').addEventListener('click', ()=>{
   saveLocal('yt_key', $('cfgYtKey').value.trim());
   saveLocal('gem_key', $('cfgGemKey').value.trim());
+  saveLocal('gem_model', $('cfgGemModel').value.trim());
   saveLocal('gh_token', $('cfgGhToken').value.trim());
   toast('✅ ההגדרות ומפתחות ה-API נשמרו!');
 });
@@ -2984,6 +3053,7 @@ function runUnitTests(){
   const d=new Date(); $('txDate').value = new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10);
   $('cfgYtKey').value = SESSION_SECRETS.ytKey;
   $('cfgGemKey').value = SESSION_SECRETS.gemKey;
+  $('cfgGemModel').value = loadLocal('gem_model', 'gemini-2.5-flash');
   $('cfgGhToken').value = SESSION_SECRETS.ghToken;
   showTab('overview');
   refreshAll();
