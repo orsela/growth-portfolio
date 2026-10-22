@@ -2964,6 +2964,12 @@ function runUnitTests(){
   assertEq('CSV Parsed rows', parsed.length, 3);
   assertEq('CSV Quoted Comma', parsed[1][0], 'AAPL,Inc');
 
+  // QA-04: toBase64Utf8
+  assertEq('Base64 ASCII', toBase64Utf8('hello'), 'aGVsbG8=');
+  assertEq('Base64 Hebrew', toBase64Utf8('שלום'), '16nXnNeV150=');
+  assertEq('Base64 Emoji', toBase64Utf8('😎'), '8J+Yjg==');
+  assertEq('Base64 Empty', toBase64Utf8(''), '');
+
   console.log(`Self-tests complete: ${passed} passed, ${failed} failed.`);
   return failed === 0;
 }
