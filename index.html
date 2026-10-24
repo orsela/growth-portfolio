@@ -229,12 +229,12 @@ table.mv-table a{color:var(--accent);text-decoration:none}
         <h3 style="margin-top:4px">🚀 העלאה ישירה לאוויר — החלפת גרסה 3.7 הישנה ב-`orsela.github.io/growth-portfolio`</h3>
         <p class="sub" style="margin-top:2px">הדבק כאן את ה-GitHub Token שלך ולחץ על הכפתור הירוק: הדף הזה ידחוף את עצמו (`index.html`) ואת הנתונים החיים (`data/state.json`) **ישירות לענף `main`** שלך בלי שום Pull Request ובלי Jules!</p>
       </div>
-      <button type="button" class="mini" onclick="$('directDeployBanner').hidden=true">הסתר תיבה זו ✕</button>
+      <button type="button" class="mini" onclick="$('directDeployBanner').hidden=true" fdprocessedid="elsod">הסתר תיבה זו ✕</button>
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px">
-      <input type="password" id="topGhToken" placeholder="הדבק GitHub Token (github_pat_... / ghp_...)" style="flex:1;min-width:260px">
-      <input type="text" id="topGhRepo" value="orsela/growth-portfolio" style="width:210px">
-      <button type="button" class="mini success" id="btnDirectPushAll" style="font-size:15px;padding:9px 18px;font-weight:700">⚡ דחוף והעלה לאוויר את גרסה 4.0 Live עכשיו!</button>
+      <input type="password" id="topGhToken" placeholder="הדבק GitHub Token (github_pat_... / ghp_...)" style="flex:1;min-width:260px" fdprocessedid="zykf4a">
+      <input type="text" id="topGhRepo" value="orsela/growth-portfolio" style="width:210px" fdprocessedid="fqysb">
+      <button type="button" class="mini success" id="btnDirectPushAll" style="font-size:15px;padding:9px 18px;font-weight:700" fdprocessedid="qbgoo">⚡ דחוף והעלה לאוויר את גרסה 4.0 Live עכשיו!</button>
     </div>
     <div id="topDeployStatus" style="margin-top:8px;font-size:14px;font-weight:700">⏳ שלב 2/2: דוחף את `index.html` (גרסה 4.0 Live) ישירות לענף `main` (דורס את 3.7)...</div>
   </div>
@@ -246,11 +246,11 @@ table.mv-table a{color:var(--accent);text-decoration:none}
     </div>
     <h1>תיק יעד צמיחה ותוכנית מעבר</h1>
     <p class="sub">מבנה יעד שמשאיר את ה-AI כמנוע המרכזי, ומוסיף מנועי צמיחה שלא תלויים באותו מחזור. ההחזקות מאומתות מתיק Yahoo Finance (p_4 – 11 פוזיציות FIFO) ומהפעולות שהוזנו, והשווי לפי השער החי מ-Yahoo Finance. מדיניות ההתאמה: בסבלנות — מוכרים רק במחירי יעד, קונים רק בנקודות כניסה.</p>
-    <p class="stamp" id="mktStamp"><span class="dot on"></span>מחירים: <b class="num">24.10, 10:32</b> · ממוצעים: <span class="num">2026-10-24</span> · <b class="pos">LIVE: מחובר ומסונכרן בזמן אמת ל-Yahoo Finance ✓</b></p>
+    <p class="stamp" id="mktStamp"><span class="dot err"></span>מחירים: <b class="num">24.10, 10:32</b> · ממוצעים: <span class="num">2026-10-24</span> · שואב שערים חיים מ-Yahoo Finance...</p>
     <p class="stamp" id="baseNote">כמויות: Yahoo Finance p_4 (FIFO Verified) (רווח ממומש היסטורי: +$5,116)</p>
     <div class="refresh" id="rfBox">
-      <button type="button" class="rfbtn" id="rfBtn"><span class="ic" aria-hidden="true">🔄</span><span id="rfLbl">עדכן הכל עכשיו (Live)</span></button>
-      <span class="rfst" id="rfSt" role="status">נשלח ב-<b class="num">10:32</b> · <span class="ok">מחירים וגרף עודכנו חי ✓ 10:32</span> · <span class="bad">חדשות: ממתין</span> · <span class="dim">מיכה: שמור</span></span>
+      <button type="button" class="rfbtn" id="rfBtn" fdprocessedid="p6domv"><span class="ic" aria-hidden="true">🔄</span><span id="rfLbl">עדכן הכל עכשיו (Live)</span></button>
+      <span class="rfst" id="rfSt" role="status">נשלח ב-<b class="num">10:48</b> · <span class="bad">מחירים: מטמון שמור</span> · <span class="bad">חדשות: ממתין</span> · <span class="dim">מיכה: שמור</span></span>
     </div>
     <div class="pf" id="pfTile" role="region" aria-label="התיק: שווי, גרף ותנועות היום"><div class="pf-top">
       <div class="pf-main"><span class="eyebrow">שווי התיק (p_4) · יום המסחר 24.10</span><span class="pf-val num">$63,474</span><span class="pf-chg num pos">$0 (0.00%) <span class="dim" style="font-family:Assistant,sans-serif">מול הסגירה הקודמת</span></span></div>
@@ -258,18 +258,18 @@ table.mv-table a{color:var(--accent);text-decoration:none}
     </div>
     <div class="pf-chips"><span class="pf-chip "><b>GOOG</b><span class="num">▲ 0.00%</span></span><span class="pf-chip "><b>NBIS</b><span class="num">▲ 0.00%</span></span></div>
     <div class="pf-chead"><span>מצייר גרף סגירות מ-Yahoo Finance...</span>
-      <div class="seg-ctl"><button type="button" data-pfr="22" aria-pressed="true">חודש</button><button type="button" data-pfr="66" aria-pressed="false">3 חודשים</button><button type="button" data-pfr="126" aria-pressed="false">6 חודשים</button><button type="button" data-pfr="0" aria-pressed="false">הכל</button></div></div>
+      <div class="seg-ctl"><button type="button" data-pfr="22" aria-pressed="false" fdprocessedid="4barz">חודש</button><button type="button" data-pfr="66" aria-pressed="true" fdprocessedid="fm8ebj">3 חודשים</button><button type="button" data-pfr="126" aria-pressed="false" fdprocessedid="z5m3pe">6 חודשים</button><button type="button" data-pfr="0" aria-pressed="false" fdprocessedid="iqd828">הכל</button></div></div>
     <div class="pf-chart" id="pfChart"></div></div>
   </header>
 
   <nav class="tabs" role="tablist" aria-label="מסכי העמוד">
-    <button type="button" role="tab" id="tab-overview" aria-controls="p-overview" data-tab="overview" aria-selected="true">סקירה</button>
-    <button type="button" role="tab" id="tab-plan" aria-controls="p-plan" data-tab="plan" aria-selected="false">מחשבון ותוכנית</button>
-    <button type="button" role="tab" id="tab-tx" aria-controls="p-tx" data-tab="tx" aria-selected="false">פעולות <span class="badge" id="bTx" hidden=""></span></button>
-    <button type="button" role="tab" id="tab-levels" aria-controls="p-levels" data-tab="levels" aria-selected="false">כניסה ויציאה <span class="badge hot" id="bLv">3</span></button>
-    <button type="button" role="tab" id="tab-micha" aria-controls="p-micha" data-tab="micha" aria-selected="false">מיכה סטוקס <span class="badge" id="bMi">3</span></button>
-    <button type="button" role="tab" id="tab-news" aria-controls="p-news" data-tab="news" aria-selected="false">חדשות <span class="badge hot" id="bNx" hidden=""></span></button>
-    <button type="button" role="tab" id="tab-agents" aria-controls="p-agents" data-tab="agents" aria-selected="false">⚙️ סוכנים ו-Yahoo</button>
+    <button type="button" role="tab" id="tab-overview" aria-controls="p-overview" data-tab="overview" aria-selected="true" fdprocessedid="xohh4q">סקירה</button>
+    <button type="button" role="tab" id="tab-plan" aria-controls="p-plan" data-tab="plan" aria-selected="false" fdprocessedid="m54q1n">מחשבון ותוכנית</button>
+    <button type="button" role="tab" id="tab-tx" aria-controls="p-tx" data-tab="tx" aria-selected="false" fdprocessedid="bcet2th">פעולות <span class="badge" id="bTx" hidden=""></span></button>
+    <button type="button" role="tab" id="tab-levels" aria-controls="p-levels" data-tab="levels" aria-selected="false" fdprocessedid="lsk7ir">כניסה ויציאה <span class="badge hot" id="bLv">3</span></button>
+    <button type="button" role="tab" id="tab-micha" aria-controls="p-micha" data-tab="micha" aria-selected="false" fdprocessedid="87qs9">מיכה סטוקס <span class="badge" id="bMi">3</span></button>
+    <button type="button" role="tab" id="tab-news" aria-controls="p-news" data-tab="news" aria-selected="false" fdprocessedid="c4s7r">חדשות <span class="badge hot" id="bNx" hidden=""></span></button>
+    <button type="button" role="tab" id="tab-agents" aria-controls="p-agents" data-tab="agents" aria-selected="false" fdprocessedid="ylqz7">⚙️ סוכנים ו-Yahoo</button>
   </nav>
 
   <!-- ==================== טאב 1: סקירה ==================== -->
@@ -285,7 +285,7 @@ table.mv-table a{color:var(--accent);text-decoration:none}
     <div class="panel" style="border-inline-start:4px solid var(--accent)">
       <div class="topbar">
         <h3>📰 פיד מידע רץ ועדכונים חמים על מניות התיק (Live Feed)</h3>
-        <button type="button" class="mini" onclick="showTab('news')">לכל החדשות והמדדים ←</button>
+        <button type="button" class="mini" onclick="showTab('news')" fdprocessedid="85uot8">לכל החדשות והמדדים ←</button>
       </div>
       <div id="overviewLiveFeed" style="margin-top:10px;display:flex;flex-direction:column;gap:8px;max-height:210px;overflow-y:auto"><div style="display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding-bottom:6px">
       <div><span class="pill q">מיכה · PLTR</span> <span>פריצה אמיתית מעל 188 בווליום עולה. ״מעל 187 אתם בסדר, מתחת – חכו״. יעד סופי 271 (+43%).</span></div>
@@ -1120,7 +1120,7 @@ table.mv-table a{color:var(--accent);text-decoration:none}
       <div class="tbl-wrap">
         <table class="mv-table">
           <thead><tr><th>נייר</th><th>תאריך</th><th>סרטון</th><th>פריצה</th><th>יעד</th><th>קו אזהרה</th><th>מחיר</th><th>מצב מול הרמות</th><th>סיכום</th><th></th></tr></thead>
-          <tbody id="mvBody"><tr><td><span class="tk">ALAB</span></td><td class="num dim">10-07</td><td class="vid"><a href="https://www.youtube.com/watch?v=ChEc_e1FTK8" target="_blank" rel="noopener">פספסתם את הדיפ? הטעות שאסור לעשות בשיא כל הזמנים 🚨</a></td><td class="num">$372.00</td><td class="num">$500.00</td><td class="num">—</td><td class="num">$342.21</td><td><span class="pill mid">לפני פריצה (עוד 8.7%)</span></td><td class="say">פרצה התנגדות של 372 ועשויה לעלות לכיוון 500.</td><td><button type="button" class="mini" data-rs="v|ChEc_e1FTK8|ALAB">🔎 תחקר</button></td></tr><tr><td><span class="tk">BTC</span></td><td class="num dim">10-08</td><td class="vid"><a href="https://www.youtube.com/watch?v=rxk9oQ-Qzpc" target="_blank" rel="noopener">נגידי הפד רואים עוד העלאת ריבית — והשוק לא ממהר להאמין 🚨</a></td><td class="num">—</td><td class="num">—</td><td class="num">$82,800</td><td class="num">$80,661</td><td><span class="pill no">מתחת לקו האזהרה</span></td><td class="say">נעצר על קו 82,800 ונכנסו קונים; צריך להישאר מעליו.</td><td><button type="button" class="mini" data-rs="v|rxk9oQ-Qzpc|BTC">🔎 תחקר</button></td></tr><tr><td><span class="tk">BTC</span></td><td class="num dim">10-06</td><td class="vid"><a href="https://www.youtube.com/watch?v=9XWqUfU6kQg" target="_blank" rel="noopener">⭐ הנאסד״ק 100 בשיא כל הזמנים והשוק עדיין בפחד — זה האיתות לכניסה?</a></td><td class="num">$87,402</td><td class="num">$100,000</td><td class="num">—</td><td class="num">$80,661</td><td><span class="pill mid">לפני פריצה (עוד 8.4%)</span></td><td class="say">ממתין לפריצה מעל 87,402; יעד משוער 100–103 אלף.</td><td><button type="button" class="mini" data-rs="v|9XWqUfU6kQg|BTC">🔎 תחקר</button></td></tr><tr><td><span class="tk">LLY</span></td><td class="num dim">10-08</td><td class="vid"><a href="https://www.youtube.com/watch?v=rxk9oQ-Qzpc" target="_blank" rel="noopener">נגידי הפד רואים עוד העלאת ריבית — והשוק לא ממהר להאמין 🚨</a></td><td class="num">—</td><td class="num">—</td><td class="num">$1,133</td><td class="num">$1,143</td><td><span class="dim">—</span></td><td class="say">נראית חזק מעל התמיכה.</td><td><button type="button" class="mini" data-rs="v|rxk9oQ-Qzpc|LLY">🔎 תחקר</button></td></tr><tr><td><span class="tk">NVDA</span></td><td class="num dim">10-07</td><td class="vid"><a href="https://www.youtube.com/watch?v=ChEc_e1FTK8" target="_blank" rel="noopener">פספסתם את הדיפ? הטעות שאסור לעשות בשיא כל הזמנים 🚨</a></td><td class="num">$236.00</td><td class="num">$283.00</td><td class="num">$232.00</td><td class="num">$225.30</td><td><span class="pill no">מתחת לקו האזהרה</span></td><td class="say">בשיא כל הזמנים; תיקון אפשרי לכיוון 232.</td><td><button type="button" class="mini" data-rs="v|ChEc_e1FTK8|NVDA">🔎 תחקר</button></td></tr><tr><td><span class="tk">QQQ</span></td><td class="num dim">10-06</td><td class="vid"><a href="https://www.youtube.com/watch?v=9XWqUfU6kQg" target="_blank" rel="noopener">⭐ הנאסד״ק 100 בשיא כל הזמנים והשוק עדיין בפחד — זה האיתות לכניסה?</a></td><td class="num">$748.00</td><td class="num">$836.00</td><td class="num">$661.00</td><td class="num">$747.58</td><td><span class="pill mid">לפני פריצה (עוד 0.1%)</span></td><td class="say">תבנית ספל-ידית: פריצה מעל 748 עשויה להביא את המדד ל-836.</td><td><button type="button" class="mini" data-rs="v|9XWqUfU6kQg|QQQ">🔎 תחקר</button></td></tr></tbody>
+          <tbody id="mvBody"><tr><td><span class="tk">ALAB</span></td><td class="num dim">10-07</td><td class="vid"><a href="https://www.youtube.com/watch?v=ChEc_e1FTK8" target="_blank" rel="noopener">פספסתם את הדיפ? הטעות שאסור לעשות בשיא כל הזמנים 🚨</a></td><td class="num">$372.00</td><td class="num">$500.00</td><td class="num">—</td><td class="num">$342.21</td><td><span class="pill mid">לפני פריצה (עוד 8.7%)</span></td><td class="say">פרצה התנגדות של 372 ועשויה לעלות לכיוון 500.</td><td><button type="button" class="mini" data-rs="v|ChEc_e1FTK8|ALAB">🔎 תחקר</button></td></tr><tr><td><span class="tk">BTC</span></td><td class="num dim">10-08</td><td class="vid"><a href="https://www.youtube.com/watch?v=rxk9oQ-Qzpc" target="_blank" rel="noopener">נגידי הפד רואים עוד העלאת ריבית — והשוק לא ממהר להאמין 🚨</a></td><td class="num">—</td><td class="num">—</td><td class="num">$82,800</td><td class="num">—</td><td><span class="dim">—</span></td><td class="say">נעצר על קו 82,800 ונכנסו קונים; צריך להישאר מעליו.</td><td><button type="button" class="mini" data-rs="v|rxk9oQ-Qzpc|BTC">🔎 תחקר</button></td></tr><tr><td><span class="tk">BTC</span></td><td class="num dim">10-06</td><td class="vid"><a href="https://www.youtube.com/watch?v=9XWqUfU6kQg" target="_blank" rel="noopener">⭐ הנאסד״ק 100 בשיא כל הזמנים והשוק עדיין בפחד — זה האיתות לכניסה?</a></td><td class="num">$87,402</td><td class="num">$100,000</td><td class="num">—</td><td class="num">—</td><td><span class="dim">—</span></td><td class="say">ממתין לפריצה מעל 87,402; יעד משוער 100–103 אלף.</td><td><button type="button" class="mini" data-rs="v|9XWqUfU6kQg|BTC">🔎 תחקר</button></td></tr><tr><td><span class="tk">LLY</span></td><td class="num dim">10-08</td><td class="vid"><a href="https://www.youtube.com/watch?v=rxk9oQ-Qzpc" target="_blank" rel="noopener">נגידי הפד רואים עוד העלאת ריבית — והשוק לא ממהר להאמין 🚨</a></td><td class="num">—</td><td class="num">—</td><td class="num">$1,133</td><td class="num">$1,143</td><td><span class="dim">—</span></td><td class="say">נראית חזק מעל התמיכה.</td><td><button type="button" class="mini" data-rs="v|rxk9oQ-Qzpc|LLY">🔎 תחקר</button></td></tr><tr><td><span class="tk">NVDA</span></td><td class="num dim">10-07</td><td class="vid"><a href="https://www.youtube.com/watch?v=ChEc_e1FTK8" target="_blank" rel="noopener">פספסתם את הדיפ? הטעות שאסור לעשות בשיא כל הזמנים 🚨</a></td><td class="num">$236.00</td><td class="num">$283.00</td><td class="num">$232.00</td><td class="num">$225.30</td><td><span class="pill no">מתחת לקו האזהרה</span></td><td class="say">בשיא כל הזמנים; תיקון אפשרי לכיוון 232.</td><td><button type="button" class="mini" data-rs="v|ChEc_e1FTK8|NVDA">🔎 תחקר</button></td></tr><tr><td><span class="tk">QQQ</span></td><td class="num dim">10-06</td><td class="vid"><a href="https://www.youtube.com/watch?v=9XWqUfU6kQg" target="_blank" rel="noopener">⭐ הנאסד״ק 100 בשיא כל הזמנים והשוק עדיין בפחד — זה האיתות לכניסה?</a></td><td class="num">$748.00</td><td class="num">$836.00</td><td class="num">$661.00</td><td class="num">$747.58</td><td><span class="pill mid">לפני פריצה (עוד 0.1%)</span></td><td class="say">תבנית ספל-ידית: פריצה מעל 748 עשויה להביא את המדד ל-836.</td><td><button type="button" class="mini" data-rs="v|9XWqUfU6kQg|QQQ">🔎 תחקר</button></td></tr></tbody>
         </table>
       </div>
     </section>
@@ -1134,7 +1134,7 @@ table.mv-table a{color:var(--accent);text-decoration:none}
         <button type="button" class="mini primary" id="btnSyncNewsNow">🔄 רענן חדשות ומדדים עכשיו</button>
       </div>
       <p class="sub" id="nxSub">מתעדכן בזמן אמת מפידי Yahoo Finance / Nasdaq. מוצגות רק ידיעות מ-48 השעות האחרונות עם קישור למקור.</p>
-      <div class="nx-strip" id="nxIdx"><div class="nx-card"><span class="nm">תשואה 10 שנים <span class="dim num">TNX</span></span><span class="lv num">4.99</span><small class="num pos">+0.77%</small></div><div class="nx-card btcc"><span class="nm">ביטקוין <span class="dim num">BTC</span></span><span class="lv num">$80,661</span><small class="num neg">-0.51%</small></div></div>
+      <div class="nx-strip" id="nxIdx"><p class="note">מושך מדדים וביטקוין מ-Yahoo Finance...</p></div>
       <p class="note" id="nxMkt"></p>
       <div class="nx-bar">
         <div class="seg-ctl" role="group">
@@ -2072,4 +2072,4 @@ function refreshAll(){
 })();
 </script>
 
-</body></html>
+<span id="PING_IFRAME_FORM_DETECTION" style="display: none;"></span></body></html>
