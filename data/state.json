@@ -1,7 +1,7 @@
 {
   "schemaVersion": "4.0.0",
   "version": "4.0-live",
-  "updatedAt": "2026-10-24T07:39:19.968Z",
+  "updatedAt": "2026-10-24T07:50:06.829Z",
   "base": {
     "asOf": "Yahoo Finance p_4 (FIFO Verified)",
     "realizedHistorical": 5116.18,
@@ -1321,18 +1321,8 @@
     "items": []
   },
   "indices": {
-    "rows": [
-      {
-        "t": "TNX",
-        "name": "תשואה 10 שנים",
-        "last": 4.988,
-        "chgPct": 0.7676767676767726
-      }
-    ],
-    "btc": {
-      "price": 80661.18,
-      "chgPct": -0.509422295800932
-    }
+    "rows": [],
+    "btc": null
   },
   "micha": {
     "asOf": "2026-10-24",
