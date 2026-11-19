@@ -53,7 +53,7 @@
     }
   },
   "mkt": {
-    "asOf": "2026-11-19T21:44:56Z",
+    "asOf": "2026-11-19T22:19:08Z",
     "session": "close",
     "maAsOf": "2026-10-24",
     "s150AsOf": "2026-10-24",
@@ -298,8 +298,8 @@
       ]
     },
     "targetsAsOf": "2026-10-24",
-    "lastAttemptAt": "2026-11-19T21:44:56Z",
-    "lastSuccessAt": "2026-11-19T21:44:56Z"
+    "lastAttemptAt": "2026-11-19T22:19:08Z",
+    "lastSuccessAt": "2026-11-19T22:19:08Z"
   },
   "closes": {
     "NBIS": {
